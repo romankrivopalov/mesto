@@ -1,0 +1,24 @@
+.profile__edit-btn {
+  position: absolute;
+  top: 8px;
+  right: -28px;
+  width: 18px;
+  height: 18px;
+  background-image: url('../../../images/icon-edit-button.svg');
+  background-color: inherit;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 7.5px;
+  border: 1px solid var(--color-white);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 992px) {
+  .profile__edit-btn {
+    top: 16px;
+    right: -42px;
+    width: 24px;
+    height: 24px;
+    background-size: 10px;
+  }
+}
