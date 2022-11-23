@@ -11,6 +11,11 @@
   border: 2px solid var(--color-white);
   border-radius: 2px;
   cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
 }
 
 @media screen and (min-width: 425px) {
