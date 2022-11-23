@@ -1,0 +1,6 @@
+.cards__item {
+  position: relative;
+  background-color: var(--color-white);
+  border-radius: 10px;
+  overflow: hidden;
+}

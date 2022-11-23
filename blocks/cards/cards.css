@@ -1,0 +1,16 @@
+.cards {
+  padding: 36px 19px 0 19px;
+}
+
+@media screen and (min-width: 768px) {
+  .cards {
+    padding: 50px 19px 0 19px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .cards {
+    padding: 50px 0 0 0;
+    max-width: 880px;
+  }
+}
