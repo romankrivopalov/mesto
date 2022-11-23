@@ -1,0 +1,17 @@
+.form__btn {
+  margin-top: 48px;
+  padding: 0;
+  width: 100%;
+  font-size: 14px;
+  line-height: 46px;
+  color: var(--color-white);
+  background-color: var(--color-black);
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .form__btn {
+    font-size: 18px;
+    line-height: 50px;
+  }
+}
