@@ -1,4 +1,4 @@
-.form__close {
+.popup__close {
   position: absolute;
   top: -36px;
   right: 0;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .form__close {
+  .popup__close {
     top: -40px;
     right: -40px;
     width: 32px;
