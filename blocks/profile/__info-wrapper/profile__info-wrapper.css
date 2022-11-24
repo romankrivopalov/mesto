@@ -1,16 +1,19 @@
 .profile__info-wrapper {
-  margin: 0 38px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 28px;
   position: relative;
+  max-width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .profile__info-wrapper {
-    margin: 0 38px 0 0;
+    padding: 0 40px 0 0;
   }
 }
 
-@media screen and (min-width: 992px) {
+/* @media screen and (min-width: 992px) {
   .profile__info-wrapper {
     margin: 0 60px 0 0;
   }
-}
+} */

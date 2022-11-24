@@ -3,19 +3,12 @@
 let openModal = document.querySelector('.profile__edit-btn'),
     modal = document.querySelector('.popup'),
     closeModal = modal.querySelector('.popup__close'),
-    form = document.querySelector('.popup__container'),
-    inputName = form.querySelector('.popup__item_type_name'),
-    inputSignature = form.querySelector('.popup__item_type_about'),
-    saveButton = form.querySelector('.popup__btn'),
+    formEditProfile = document.querySelector('.popup__form'),
+    inputName = formEditProfile.querySelector('.popup__item_type_name'),
+    inputSignature = formEditProfile.querySelector('.popup__item_type_about'),
+    saveButton = formEditProfile.querySelector('.popup__btn'),
     profileTitle = document.querySelector('.profile__title'),
     profileSubtitle = document.querySelector('.profile__subtitle');
-
-inputName.value = profileTitle.textContent;
-inputSignature.value = profileSubtitle.textContent;
-
-openModal.addEventListener('click', showModal);
-closeModal.addEventListener('click', hideModal);
-form.addEventListener('submit', formSubmitHandler);
 
 function formSubmitHandler(e) {
   e.preventDefault();
@@ -27,6 +20,9 @@ function formSubmitHandler(e) {
 }
 
 function showModal() {
+  inputName.value = profileTitle.textContent;
+  inputSignature.value = profileSubtitle.textContent;
+
   modal.classList.add('popup_opened');
 }
 
@@ -34,5 +30,6 @@ function hideModal() {
   modal.classList.remove('popup_opened');
 }
 
-showModal();
-hideModal();
+openModal.addEventListener('click', showModal);
+closeModal.addEventListener('click', hideModal);
+formEditProfile.addEventListener('submit', formSubmitHandler);

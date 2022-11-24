@@ -8,6 +8,7 @@
   .profile {
     padding: 40px 19px 0 19px;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
   }
 }

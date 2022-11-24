@@ -7,7 +7,6 @@
   padding: 25px 22px;
   min-width: 282px;
   background-color: var(--color-white);
-  border: none;
   border-radius: 10px;
   transform: translate(-50%, -50%);
 }

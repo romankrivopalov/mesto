@@ -1,4 +1,4 @@
-.cards__item {
+.card {
   position: relative;
   font-size: 0;
   background-color: var(--color-white);

@@ -29,35 +29,35 @@
 
     <section class="cards container">
       <ul class="cards__list">
-        <li class="cards__item">
-          <img src="images/cards/card-karachaevsk.jpg" alt=" Старое, заброшенное, кирпичное здание на холме, на фоне гор." class="cards__img">
-          <h2 class="cards__title">Карачаево-Черкесская республика</h2>
-          <div class="cards__like"></div>
+        <li class="card">
+          <img src="images/cards/card-karachaevsk.jpg" alt=" Старое, заброшенное, кирпичное здание на холме, на фоне гор." class="card__img">
+          <h2 class="card__title">Карачаево-Черкесская республика</h2>
+          <button type="button" class="card__like"></button>
         </li>
-        <li class="cards__item">
-          <img src="images/cards/card-elbrus.jpg" alt=" Гора с заснеженной вершиной, пасмурная погода." class="cards__img">
-          <h2 class="cards__title">Гора Эльбрус</h2>
-          <div class="cards__like"></div>
+        <li class="card">
+          <img src="images/cards/card-elbrus.jpg" alt=" Гора с заснеженной вершиной, пасмурная погода." class="card__img">
+          <h2 class="card__title">Гора Эльбрус</h2>
+          <button type="button" class="card__like"></button>
         </li>
-        <li class="cards__item">
-          <img src="images/cards/card-dombai.jpg" alt=" Хвойный лес, на заднем фоне большая гора, пасмурная погода." class="cards__img">
-          <h2 class="cards__title">Домбай</h2>
-          <div class="cards__like"></div>
+        <li class="card">
+          <img src="images/cards/card-dombai.jpg" alt=" Хвойный лес, на заднем фоне большая гора, пасмурная погода." class="card__img">
+          <h2 class="card__title">Домбай</h2>
+          <button type="button" class="card__like"></button>
         </li>
-        <li class="cards__item">
-          <img src="images/cards/card-elton.jpg" alt=" Соль в озере, похожее на песок, стоит столб." class="cards__img">
-          <h2 class="cards__title">Эльтон</h2>
-          <div class="cards__like"></div>
+        <li class="card">
+          <img src="images/cards/card-elton.jpg" alt=" Соль в озере, похожее на песок, стоит столб." class="card__img">
+          <h2 class="card__title">Эльтон</h2>
+          <button type="button" class="card__like"></button>
         </li>
-        <li class="cards__item">
-          <img src="images/cards/card-taganay.jpg" alt=" Вид сверху на скалистые горы в снеге с хвойными деревьями, на закате." class="cards__img">
-          <h2 class="cards__title">Таганай</h2>
-          <div class="cards__like"></div>
+        <li class="card">
+          <img src="images/cards/card-taganay.jpg" alt=" Вид сверху на скалистые горы в снеге с хвойными деревьями, на закате." class="card__img">
+          <h2 class="card__title">Таганай</h2>
+          <button type="button" class="card__like"></button>
         </li>
-        <li class="cards__item">
-          <img src="images/cards/card-baikal.jpg" alt=" Вид днём, с заледеневшего озера на гору, голубой прозрачный лёд." class="cards__img">
-          <h2 class="cards__title">Озеро Байкал</h2>
-          <div class="cards__like"></div>
+        <li class="card">
+          <img src="images/cards/card-baikal.jpg" alt=" Вид днём, с заледеневшего озера на гору, голубой прозрачный лёд." class="card__img">
+          <h2 class="card__title">Озеро Байкал</h2>
+          <button type="button" class="card__like"></button>
         </li>
       </ul>
     </section>
@@ -68,23 +68,30 @@
   </footer>
 
   <section class="popup">
-    <form class="popup__container">
-      <div class="popup__close"></div>
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input
-      type="text"
-      class="popup__item popup__item_type_name"
-      placeholder="Введите ваше имя"
-      required>
-      <input
-      type="text"
-      class="popup__item popup__item_type_about"
-      placeholder="Добавьте описание"
-      required>
-      <button type="submit" class="popup__btn">Сохранить</button>
-    </form>
+      <form class="popup__form">
+        <input
+        type="text"
+        id="input-name"
+        name="input-name"
+        class="popup__item popup__item_type_name"
+        placeholder="Введите ваше имя"
+        required>
+        <input
+        type="text"
+        id="input-about"
+        name="input-about"
+        class="popup__item popup__item_type_about"
+        placeholder="Добавьте описание"
+        required>
+        <button type="submit" class="popup__save-btn">Сохранить</button>
+      </form>
+
+    </div>
   </section>
 
-  <script src="js/script.js"></script>
+  <script defer src="scripts/script.js"></script>
 </body>
 </html>

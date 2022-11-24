@@ -1,9 +1,9 @@
 .popup__item_type_name {
-  margin: 44px 0 0 0;
+  margin: 67px 0 0 0;
 }
 
 @media screen and (min-width: 768px) {
   .popup__item_type_name {
-    margin: 23px 0 0 0;
+    margin: 39px 0 0 0;
   }
 }
