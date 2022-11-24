@@ -2,6 +2,8 @@
   position: absolute;
   top: 8px;
   right: -28px;
+  margin: 0;
+  padding: 0;
   width: 18px;
   height: 18px;
   background-image: url('../../../images/icon-edit-button.svg');
