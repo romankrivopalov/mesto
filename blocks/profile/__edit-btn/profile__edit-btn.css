@@ -1,9 +1,7 @@
 .profile__edit-btn {
-  position: absolute;
-  top: 8px;
-  right: 0;
   margin: 0;
   padding: 0;
+  flex-shrink: 0;
   width: 18px;
   height: 18px;
   background-image: url('../../../images/icon-edit-button.svg');

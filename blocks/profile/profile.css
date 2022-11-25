@@ -2,6 +2,7 @@
   padding: 42px 19px 0 19px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -9,7 +10,7 @@
     padding: 40px 19px 0 19px;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    column-gap: 30px;
   }
 }
 
