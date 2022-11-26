@@ -2,6 +2,8 @@
   position: absolute;
   top: -36px;
   right: 0;
+  margin: 0;
+  padding: 0;
   width: 20px;
   height: 20px;
   background-image: url('../../../images/icon-close-form.svg');
