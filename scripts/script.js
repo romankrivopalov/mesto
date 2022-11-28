@@ -2,6 +2,7 @@
 
 let openModal = document.querySelector('.profile__edit-btn'),
     modal = document.querySelector('.popup'),
+    modalContainer = document.querySelector('.popup__container'),
     closeModal = modal.querySelector('.popup__close'),
     formEditProfile = document.querySelector('.popup__form'),
     inputName = formEditProfile.querySelector('.popup__item_type_name'),
@@ -33,3 +34,8 @@ function hideModal() {
 openModal.addEventListener('click', showModal);
 closeModal.addEventListener('click', hideModal);
 formEditProfile.addEventListener('submit', formSubmitHandler);
+modal.addEventListener('click', (e) => {
+  if(e.target === e.currentTarget) {
+    hideModal();
+  }
+})
