@@ -2,14 +2,19 @@
 
 const profileTitle = document.querySelector('.profile__title'),
       profileSubtitle = document.querySelector('.profile__subtitle'),
-      openModal = document.querySelector('.profile__edit-btn'),
-      modal = document.querySelector('.popup'),
-      modalContainer = document.querySelector('.popup__container'),
-      closeModal = modal.querySelector('.popup__close'),
-      formEditProfile = document.querySelector('.popup__form'),
+      editProfileBtn = document.querySelector('.profile__edit-btn'),
+      profileModal = document.querySelector('.popup[data-type="edit-popup"]'),
+      modalContainer = profileModal.querySelector('.popup__container'),
+      profileModalClose = profileModal.querySelector('.popup__close'),
+      formEditProfile = profileModal.querySelector('.popup__form'),
       inputName = formEditProfile.querySelector('.popup__item_type_name'),
       inputSignature = formEditProfile.querySelector('.popup__item_type_about'),
-      saveButton = formEditProfile.querySelector('.popup__btn'),
+      addCardsBtn = document.querySelector('.profile__add-btn'),
+      cardsModal = document.querySelector('.popup[data-type="add-popup"]'),
+      cardModalClose = cardsModal.querySelector('.popup__close'),
+      formAddCard = cardsModal.querySelector('.popup__form'),
+      inputCardName = formAddCard.querySelector('.popup__item_type_name'),
+      inputCardLink = formAddCard.querySelector('.popup__item_type_about'),
       cardsList = document.querySelector('.cards__list'),
       cardsTemplate = document.querySelector('#card').content,
       initialCards = [
@@ -39,19 +44,37 @@ const profileTitle = document.querySelector('.profile__title'),
         }
       ];
 
-addCards();
+renderCards(initialCards);
 
-function addCards() {
-  for (let i = 0; i < initialCards.length; i++) {
-    let cardName = initialCards[i].name,
-        cardLink = initialCards[i].link,
-        cardElement = cardsTemplate.querySelector('.card').cloneNode(true);
+function renderCards(elem) {
+  for (let i = 0; i < elem.length; i++) {
+    let card = elem[i];
 
-    cardElement.querySelector('.card__title').textContent = cardName;
-    cardElement.querySelector('.card__img').src = cardLink;
-
-    cardsList.append(cardElement);
+    addCard(card);
   }
+}
+
+function addCard(item) {
+  let cardName = item.name,
+  cardLink = item.link,
+  cardElement = cardsTemplate.querySelector('.card').cloneNode(true);
+
+  cardElement.querySelector('.card__title').textContent = cardName;
+  cardElement.querySelector('.card__img').src = cardLink;
+
+  cardsList.prepend(cardElement);
+}
+
+function formSubmitAddCard(e) {
+  e.preventDefault();
+
+  let card = {
+    name: inputCardName.value,
+    link: inputCardLink.value
+  }
+
+  addCard(card);
+  hideModalAddCard();
 }
 
 function formSubmitHandler(e) {
@@ -60,25 +83,41 @@ function formSubmitHandler(e) {
   profileTitle.textContent = inputName.value;
   profileSubtitle.textContent = inputSignature.value;
 
-  hideModal();
+  hideModalProfile();
 }
 
-function showModal() {
+function showModalProfile() {
   inputName.value = profileTitle.textContent;
   inputSignature.value = profileSubtitle.textContent;
 
-  modal.classList.add('popup_opened');
+  profileModal.classList.add('popup_opened');
 }
 
-function hideModal() {
-  modal.classList.remove('popup_opened');
+function hideModalProfile() {
+  profileModal.classList.remove('popup_opened');
 }
 
-openModal.addEventListener('click', showModal);
-closeModal.addEventListener('click', hideModal);
+function showModalAddCard() {
+  cardsModal.classList.add('popup_opened');
+}
+
+function hideModalAddCard() {
+  cardsModal.classList.remove('popup_opened');
+}
+
+editProfileBtn.addEventListener('click', showModalProfile);
+profileModalClose.addEventListener('click', hideModalProfile);
 formEditProfile.addEventListener('submit', formSubmitHandler);
-modal.addEventListener('click', (e) => {
+profileModal.addEventListener('click', (e) => {
   if(e.target === e.currentTarget) {
-    hideModal();
+    hideModalProfile();
   }
-})
+});
+addCardsBtn.addEventListener('click', showModalAddCard);
+cardModalClose.addEventListener('click', hideModalAddCard);
+formAddCard.addEventListener('submit', formSubmitAddCard);
+cardsModal.addEventListener('click', (e) => {
+  if(e.target === e.currentTarget) {
+    hideModalAddCard();
+  }
+});

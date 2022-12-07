@@ -37,7 +37,7 @@
     <p lang="en" class="footer__copyrigth">&copy; 2022 Roman Krivopalov</p>
   </footer>
 
-  <section class="popup">
+  <section data-type="edit-popup" class="popup">
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -62,9 +62,34 @@
     </div>
   </section>
 
+  <section data-type="add-popup"class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form">
+        <input
+        type="text"
+        id="input-name"
+        name="input-name"
+        class="popup__item popup__item_type_name"
+        placeholder="Название"
+        required>
+        <input
+        type="text"
+        id="input-about"
+        name="input-about"
+        class="popup__item popup__item_type_about"
+        placeholder="Ссылка на картинку"
+        required>
+        <button type="submit" class="popup__save-btn">Создать</button>
+      </form>
+
+    </div>
+  </section>
+
   <template id="card">
     <li class="card">
-      <img alt=" Изображение загружённое пользователем." class="card__img">
+      <img alt=" Изображение загруженное пользователем." class="card__img">
       <h2 class="card__title"></h2>
       <button type="button" class="card__like"></button>
     </li>
