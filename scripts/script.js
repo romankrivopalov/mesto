@@ -42,7 +42,12 @@ const profileTitle = document.querySelector('.profile__title'),
           name: 'Байкал',
           link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
         }
-      ];
+      ],
+      imgModal = document.querySelector('.popup[data-type="img-popup"]'),
+      imgModalImage = imgModal.querySelector('.popup__img'),
+      imgModalTitle = imgModal.querySelector('.popup__title'),
+      imgPopupClose = imgModal.querySelector('.popup__close');
+
 
 addDefaultCards(initialCards);
 
@@ -58,14 +63,16 @@ function addCard(item) {
   let cardName = item.name,
       cardLink = item.link,
       cardElement = cardsTemplate.querySelector('.card').cloneNode(true),
+      cardImg = cardElement.querySelector('.card__img'),
       cardDelete = cardElement.querySelector('.card__delete'),
       cardLike = cardElement.querySelector('.card__like');
 
   cardElement.querySelector('.card__title').textContent = cardName;
-  cardElement.querySelector('.card__img').src = cardLink;
+  cardImg.src = cardLink;
 
   deleteCard(cardDelete);
   toggleLike(cardLike);
+  showModalImgCard(cardImg, cardName);
 
   cardsList.prepend(cardElement);
 }
@@ -122,6 +129,20 @@ function toggleLike(item) {
   })
 }
 
+function showModalImgCard(img, title) {
+  img.addEventListener('click', () => {
+    imgModal.classList.add('popup_opened');
+
+    imgModalImage.src = img.src;
+    imgModalTitle.textContent = title;
+    console.log(title);
+  })
+}
+
+function hiddenModalImgCard() {
+  imgModal.classList.remove('popup_opened');
+}
+
 editProfileBtn.addEventListener('click', showModalProfile);
 profileModalClose.addEventListener('click', hideModalProfile);
 formEditProfile.addEventListener('submit', formSubmitHandler);
@@ -138,3 +159,4 @@ cardsModal.addEventListener('click', (e) => {
     hideModalAddCard();
   }
 });
+imgPopupClose.addEventListener('click', hiddenModalImgCard)

@@ -1,14 +1,11 @@
 .popup__container {
+  position: relative;
   box-sizing: border-box;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   margin: 0;
   padding: 25px 22px;
   min-width: 282px;
   background-color: var(--color-white);
   border-radius: 10px;
-  transform: translate(-50%, -50%);
 }
 
 @media screen and (min-width: 768px) {

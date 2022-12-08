@@ -1,0 +1,9 @@
+.popup__title_type_show-img {
+  position: absolute;
+  bottom: -32px;
+  left: 0;
+  color: var(--color-white);
+  font-size: 12px;
+  line-height: 32px;
+  font-weight: 400;
+}
