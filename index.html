@@ -9,6 +9,8 @@
   <meta name="description" content="Интерактивный сервис Mesto, веб-разработчик Роман Кривопалов">
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <script defer src="scripts/cards.js"></script>
+  <script defer src="scripts/index.js"></script>
 </head>
 <body class="page">
   <header class="header container">
@@ -75,7 +77,7 @@
         placeholder="Название"
         required>
         <input
-        type="text"
+        type="url"
         id="input-link"
         name="input-link"
         class="popup__item popup__item_type_about"
@@ -102,7 +104,5 @@
       <button type="button" class="card__like"></button>
     </li>
   </template>
-
-  <script defer src="scripts/script.js"></script>
 </body>
 </html>
