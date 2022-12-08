@@ -62,7 +62,7 @@ function submitFormAddCard(e) {
   inputCardLink.value = '';
 }
 
-function formSubmitHandler(e) {
+function submitFormEditProfile(e) {
   e.preventDefault();
 
   profileTitle.textContent = inputName.value;
@@ -118,7 +118,7 @@ function hiddenModalImgCard() {
 
 editProfileBtn.addEventListener('click', showModalProfile);
 profileModalClose.addEventListener('click', hideModalProfile);
-formEditProfile.addEventListener('submit', formSubmitHandler);
+formEditProfile.addEventListener('submit', submitFormEditProfile);
 profileModal.addEventListener('click', (e) => {
   if (e.target === e.currentTarget) {
     hideModalProfile();
