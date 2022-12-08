@@ -56,11 +56,16 @@ function addDefaultCards(elem) {
 
 function addCard(item) {
   let cardName = item.name,
-  cardLink = item.link,
-  cardElement = cardsTemplate.querySelector('.card').cloneNode(true);
+      cardLink = item.link,
+      cardElement = cardsTemplate.querySelector('.card').cloneNode(true),
+      cardDelete = cardElement.querySelector('.card__delete'),
+      cardLike = cardElement.querySelector('.card__like');
 
   cardElement.querySelector('.card__title').textContent = cardName;
   cardElement.querySelector('.card__img').src = cardLink;
+
+  deleteCard(cardDelete);
+  toggleLike(cardLike);
 
   cardsList.prepend(cardElement);
 }
@@ -103,6 +108,18 @@ function showModalAddCard() {
 
 function hideModalAddCard() {
   cardsModal.classList.remove('popup_opened');
+}
+
+function deleteCard(item) {
+  item.addEventListener('click', () => {
+    item.parentNode.remove();
+  })
+}
+
+function toggleLike(item) {
+  item.addEventListener('click', () => {
+    item.classList.toggle('card__like_active');
+  })
 }
 
 editProfileBtn.addEventListener('click', showModalProfile);
