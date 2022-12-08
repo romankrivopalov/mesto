@@ -86,6 +86,10 @@ function hideModalAddCard() {
   cardsModal.classList.remove('popup_opened');
 }
 
+function hiddenModalImgCard() {
+  imgModal.classList.remove('popup_opened');
+}
+
 function deleteCard(item) {
   item.addEventListener('click', () => {
     item.closest('.card').remove();
@@ -100,7 +104,7 @@ function toggleLike(item) {
 
 function showModalImgCard(img, title) {
   img.addEventListener('click', () => {
-    imgModal.classList.add('popup_opened');
+    openPopup(imgModal);
 
     imgModalImage.src = img.src;
     imgModalImage.alt = ` ${title}.`;
@@ -108,15 +112,14 @@ function showModalImgCard(img, title) {
   })
 }
 
-function hiddenModalImgCard() {
-  imgModal.classList.remove('popup_opened');
-}
-
 modalCloseButtons.forEach(button => {
   button.addEventListener('click', (e) => {
     closePopup(e.currentTarget.closest('.popup'));
   })
 })
+
+
+
 
 editProfileBtn.addEventListener('click', () => {
   inputName.value = profileTitle.textContent;
@@ -127,12 +130,6 @@ editProfileBtn.addEventListener('click', () => {
 
 formEditProfile.addEventListener('submit', submitFormEditProfile);
 
-profileModal.addEventListener('click', (e) => {
-  if (e.target === e.currentTarget) {
-    hideModalProfile();
-  }
-});
-
 addCardsBtn.addEventListener('click', () => {
   inputCardName.value = '';
   inputCardLink.value = '';
@@ -141,6 +138,12 @@ addCardsBtn.addEventListener('click', () => {
 });
 
 formAddCard.addEventListener('submit', submitFormAddCard);
+
+profileModal.addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) {
+    hideModalProfile();
+  }
+});
 
 cardsModal.addEventListener('click', (e) => {
   if (e.target === e.currentTarget) {
