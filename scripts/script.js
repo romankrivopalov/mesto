@@ -48,9 +48,6 @@ const profileTitle = document.querySelector('.profile__title'),
       imgModalTitle = imgModal.querySelector('.popup__title'),
       imgPopupClose = imgModal.querySelector('.popup__close');
 
-
-addDefaultCards(initialCards);
-
 function addDefaultCards(elem) {
   for (let i = 0; i < elem.length; i++) {
     let card = elem[i];
@@ -165,3 +162,5 @@ imgModal.addEventListener('click', (e) => {
     hiddenModalImgCard();
   }
 });
+
+addDefaultCards(initialCards);
