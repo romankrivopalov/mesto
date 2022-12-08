@@ -44,9 +44,9 @@ const profileTitle = document.querySelector('.profile__title'),
         }
       ];
 
-renderCards(initialCards);
+addDefaultCards(initialCards);
 
-function renderCards(elem) {
+function addDefaultCards(elem) {
   for (let i = 0; i < elem.length; i++) {
     let card = elem[i];
 
@@ -109,7 +109,7 @@ editProfileBtn.addEventListener('click', showModalProfile);
 profileModalClose.addEventListener('click', hideModalProfile);
 formEditProfile.addEventListener('submit', formSubmitHandler);
 profileModal.addEventListener('click', (e) => {
-  if(e.target === e.currentTarget) {
+  if (e.target === e.currentTarget) {
     hideModalProfile();
   }
 });
@@ -117,7 +117,7 @@ addCardsBtn.addEventListener('click', showModalAddCard);
 cardModalClose.addEventListener('click', hideModalAddCard);
 formAddCard.addEventListener('submit', formSubmitAddCard);
 cardsModal.addEventListener('click', (e) => {
-  if(e.target === e.currentTarget) {
+  if (e.target === e.currentTarget) {
     hideModalAddCard();
   }
 });
