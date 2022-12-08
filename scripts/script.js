@@ -160,3 +160,8 @@ cardsModal.addEventListener('click', (e) => {
   }
 });
 imgPopupClose.addEventListener('click', hiddenModalImgCard)
+imgModal.addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) {
+    hiddenModalImgCard();
+  }
+});
