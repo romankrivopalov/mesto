@@ -14,3 +14,7 @@
   cursor: pointer;
   transition: opacity .3s ease-in-out;
 }
+
+.card__delete:hover {
+  opacity: .6;
+}
