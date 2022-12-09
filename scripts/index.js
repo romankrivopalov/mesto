@@ -29,9 +29,9 @@ function createCard(name, link) {
   cardImg.src = link;
   cardImg.alt = ` ${name}.`;
 
-  deleteCard(cardDelete);
-  toggleCardLike(cardLike);
-  showModalImgCard(cardImg, name);
+  cardDelete.addEventListener('click', () => deleteCard(cardDelete));
+  cardLike.addEventListener('click', () => toggleCardLike(cardLike));
+  cardImg.addEventListener('click', () => showModalImgCard(cardImg, name));
 
   return cardElement;
 }
@@ -72,32 +72,25 @@ function closePopup(popup) {
 }
 
 function deleteCard(card) {
-  card.addEventListener('click', () => {
-    card.closest('.card').remove();
-  })
+  card.closest('.card').remove();
 }
 
-function toggleCardLike(item) {
-  item.addEventListener('click', () => {
-    item.classList.toggle('card__like_active');
-  })
+function toggleCardLike(like) {
+  like.classList.toggle('card__like_active');
 }
 
 function showModalImgCard(img, title) {
-  img.addEventListener('click', () => {
-    openPopup(imgModal);
+  openPopup(imgModal);
 
-    imgModalImage.src = img.src;
-    imgModalImage.alt = ` ${title}.`;
-    imgModalTitle.textContent = title;
-  })
+  imgModalImage.src = img.src;
+  imgModalImage.alt = ` ${title}.`;
+  imgModalTitle.textContent = title;
 }
 
 function closePopupByOverlayClick(modal) {
   modal.addEventListener('click', (e) => {
     if (e.target === e.currentTarget) {
       closePopup(modal);
-      console.log(e);
     }
   })
 }
