@@ -27,30 +27,28 @@ function createCard(name, link) {
 
   cardElement.querySelector('.card__title').textContent = name;
   cardImg.src = link;
-  cardImg.alt = ` ${name}.`;
+  cardImg.alt = `${name}.`;
 
   cardDelete.addEventListener('click', () => deleteCard(cardDelete));
   cardLike.addEventListener('click', () => toggleCardLike(cardLike));
   cardImg.addEventListener('click', () => showModalImgCard(cardImg, name));
 
-  return cardElement;
+  cardsList.prepend(cardElement);
 }
 
 function addDefaultCards(elements) {
   elements.forEach(({name, link}) => {
-    cardsList.prepend(createCard(name, link));
+    createCard(name, link);
   })
 }
 
 function submitFormAddCard(e) {
   e.preventDefault();
 
-  const card = {
-    name: inputCardName.value,
-    link: inputCardLink.value
-  }
+  const name = inputCardName.value,
+        link = inputCardLink.value;
 
-  addCard(card);
+  createCard(name, link);
   closePopup(cardsModal);
 }
 
@@ -83,11 +81,11 @@ function showModalImgCard(img, title) {
   openPopup(imgModal);
 
   imgModalImage.src = img.src;
-  imgModalImage.alt = ` ${title}.`;
+  imgModalImage.alt = `${title}.`;
   imgModalTitle.textContent = title;
 }
 
-function closePopupByOverlayClick(modal) {
+function initClosePopupByOverlayClick(modal) {
   modal.addEventListener('click', (e) => {
     if (e.target === e.currentTarget) {
       closePopup(modal);
@@ -109,16 +107,15 @@ editProfileBtn.addEventListener('click', () => {
 });
 
 addCardsBtn.addEventListener('click', () => {
-  inputCardName.value = '';
-  inputCardLink.value = '';
+  formAddCard.reset();
 
   openPopup(cardsModal);
 });
 
 formEditProfile.addEventListener('submit', submitFormEditProfile);
 formAddCard.addEventListener('submit', submitFormAddCard);
-profileModal.addEventListener('click', closePopupByOverlayClick(profileModal));
-cardsModal.addEventListener('click', closePopupByOverlayClick(cardsModal));
-imgModal.addEventListener('click', closePopupByOverlayClick(imgModal));
 
 addDefaultCards(initialCards);
+initClosePopupByOverlayClick(profileModal);
+initClosePopupByOverlayClick(cardsModal);
+initClosePopupByOverlayClick(imgModal);
