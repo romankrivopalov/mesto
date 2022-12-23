@@ -3,7 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 25px 22px;
-  min-width: 282px;
+  width: 282px;
   background-color: var(--color-white);
   border-radius: 10px;
 }
@@ -11,6 +11,6 @@
 @media screen and (min-width: 768px) {
   .popup__container {
     padding: 34px 36px 37px 34px;
-    max-width: 430px;
+    width: 430px;
   }
 }
