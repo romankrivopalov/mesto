@@ -117,3 +117,4 @@ formEditProfile.addEventListener('submit', submitFormEditProfile);
 formAddCard.addEventListener('submit', submitFormAddCard);
 
 addDefaultCards(initialCards);
+enableValidation(formSetting);
