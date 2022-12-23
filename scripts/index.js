@@ -85,11 +85,16 @@ function initClosePopup(evt) {
 }
 
 function openPopup(popup) {
+  const inputList = Array.from(popup.querySelectorAll('.popup__input')),
+        buttonElement = popup.querySelector('.popup__save-btn');
+
   popup.classList.add('popup_opened');
 
   popup.addEventListener('click', initClosePopup)
   popup.querySelector('.popup__close').addEventListener('click', initClosePopup)
   document.addEventListener('keydown', initClosePopup)
+
+  toggleButtonState(inputList, buttonElement);
 }
 
 function closePopup(popup) {

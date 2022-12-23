@@ -45,27 +45,31 @@
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" novalidate>
-        <input
-        type="text"
-        id="input-name"
-        name="input-name"
-        class="popup__input popup__input_type_name"
-        placeholder="Введите ваше имя"
-        minlength="2"
-        maxlength="40"
-        required>
-        <span class="popup__input-error input-name-error"></span>
+        <label class="popup__input-wrapper">
+          <input
+          type="text"
+          id="input-name"
+          name="input-name"
+          class="popup__input popup__input_type_name"
+          placeholder="Введите ваше имя"
+          minlength="2"
+          maxlength="40"
+          required>
+          <span class="popup__input-error input-name-error"></span>
+        </label>
 
-        <input
-        type="text"
-        id="input-about"
-        name="input-about"
-        class="popup__input popup__input_type_about"
-        placeholder="Добавьте описание"
-        minlength="2"
-        maxlength="200"
-        required>
-        <span class="popup__input-error input-about-error"></span>
+        <label class="popup__input-wrapper">
+          <input
+          type="text"
+          id="input-about"
+          name="input-about"
+          class="popup__input popup__input_type_about"
+          placeholder="Добавьте описание"
+          minlength="2"
+          maxlength="200"
+          required>
+          <span class="popup__input-error input-about-error"></span>
+        </label>
 
         <button type="submit" class="popup__save-btn">Сохранить</button>
       </form>
@@ -77,25 +81,29 @@
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" novalidate>
-        <input
-        type="text"
-        id="input-img-title"
-        name="input-img-title"
-        class="popup__input popup__input_type_name"
-        placeholder="Название"
-        minlength="2"
-        maxlength="30"
-        required>
-        <span class="popup__input-error input-img-title-error"></span>
+        <label class="popup__input-wrapper">
+          <input
+          type="text"
+          id="input-img-title"
+          name="input-img-title"
+          class="popup__input popup__input_type_name"
+          placeholder="Название"
+          minlength="2"
+          maxlength="30"
+          required>
+          <span class="popup__input-error input-img-title-error"></span>
+        </label>
 
-        <input
-        type="url"
-        id="input-link"
-        name="input-link"
-        class="popup__input popup__input_type_about"
-        placeholder="Ссылка на картинку"
-        required>
-        <span class="popup__input-error input-link-error"></span>
+        <label class="popup__input-wrapper">
+          <input
+          type="url"
+          id="input-link"
+          name="input-link"
+          class="popup__input popup__input_type_about"
+          placeholder="Ссылка на картинку"
+          required>
+          <span class="popup__input-error input-link-error"></span>
+        </label>
 
         <button type="submit" class="popup__save-btn">Создать</button>
       </form>
