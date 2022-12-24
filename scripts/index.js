@@ -9,10 +9,10 @@ const popupList = document.querySelectorAll('.popup'),
       inputEditFormList = Array.from(formEditProfile.querySelectorAll('.popup__input')),
       inputName = formEditProfile.querySelector('.popup__input_type_name'),
       inputSignature = formEditProfile.querySelector('.popup__input_type_about'),
-      btnSubmitEditForm = formEditProfile.querySelector(formSetting.submitButtonSelector),
       addCardsBtn = document.querySelector('.profile__add-btn'),
       cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
       formAddCard = document.forms['card-form'],
+      btnSubmitCardForm = formAddCard.querySelector(formSetting.submitButtonSelector),
       inputCardName = formAddCard.querySelector('.popup__input_type_name'),
       inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
       cardsList = document.querySelector('.cards__list'),
@@ -54,6 +54,7 @@ function submitFormAddCard(evt) {
         link = inputCardLink.value;
 
   evt.target.reset()
+  toggleButtonState(inputEditFormList, btnSubmitCardForm, formSetting.inactiveButtonClass);
 
   createCard(name, link);
   closePopup(cardsPopup);
@@ -82,7 +83,7 @@ function showPopupImgCard(img, title) {
   imgPopupTitle.textContent = title;
 }
 
-function initClosePopup(evt) {
+function handleEscape(evt) {
   if (evt.key === 'Escape') {
 
     popupList.forEach(popup => {
@@ -95,12 +96,12 @@ function initClosePopup(evt) {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', initClosePopup)
+  document.addEventListener('keydown', handleEscape)
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', initClosePopup)
+  document.removeEventListener('keydown', handleEscape)
 }
 
 popupList.forEach((popup) => {
@@ -118,7 +119,6 @@ editProfileBtn.addEventListener('click', () => {
   inputName.value = profileTitle.textContent;
   inputSignature.value = profileSubtitle.textContent;
 
-  toggleButtonState(inputEditFormList, btnSubmitEditForm, formSetting.inactiveButtonClass);
   openPopup(profilePopup);
 });
 
