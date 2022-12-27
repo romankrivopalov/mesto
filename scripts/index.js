@@ -12,6 +12,7 @@ const popupList = document.querySelectorAll('.popup'),
       addCardsBtn = document.querySelector('.profile__add-btn'),
       cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
       formAddCard = document.forms['card-form'],
+      inputCardFormList = Array.from(formAddCard.querySelectorAll('.popup__input')),
       btnSubmitCardForm = formAddCard.querySelector(formSetting.submitButtonSelector),
       inputCardName = formAddCard.querySelector('.popup__input_type_name'),
       inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
@@ -60,7 +61,7 @@ function submitFormAddCard(evt) {
   closePopup(cardsPopup);
 }
 
-function submitFormEditProfile(evt) {
+function submitFormEditProfile() {
   profileTitle.textContent = inputName.value;
   profileSubtitle.textContent = inputSignature.value;
 
@@ -123,6 +124,8 @@ editProfileBtn.addEventListener('click', () => {
 });
 
 addCardsBtn.addEventListener('click', () => {
+  toggleButtonState(inputCardFormList, btnSubmitCardForm, formSetting.inactiveButtonClass);
+
   openPopup(cardsPopup);
 });
 
