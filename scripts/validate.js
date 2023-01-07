@@ -71,3 +71,5 @@ function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => !inputElement.validity.valid);
 }
+
+export { formSetting, enableValidation, toggleButtonState }
