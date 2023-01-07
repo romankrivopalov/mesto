@@ -43,23 +43,23 @@ class Card {
   }
 
   _setEventListeners() {
-    const cardDeleteBtn = this._element.querySelector(cardSetting.cardDeleteBtnSelector),
-          cardLikeBtn = this._element.querySelector(cardSetting.cardLikeBtnSelector);
+    const cardDeleteBtn = this._element.querySelector(this._cardSetting.cardDeleteBtnSelector),
+          cardLikeBtn = this._element.querySelector(this._cardSetting.cardLikeBtnSelector);
 
     cardDeleteBtn.addEventListener('click', () => {
-      cardDeleteBtn.closest(cardSetting.cardSelector).remove()
+      cardDeleteBtn.closest(this._cardSetting.cardSelector).remove()
     })
 
     cardLikeBtn.addEventListener('click', () => {
-      cardLikeBtn.classList.toggle(cardSetting.activeLikeBtnClass)
+      cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass)
     })
   }
 
   _getTemplate() {
     const cardElement = document
-      .querySelector(cardSetting.cardTemplate)
+      .querySelector(this._cardSetting.cardTemplate)
       .content
-      .querySelector(cardSetting.cardSelector)
+      .querySelector(this._cardSetting.cardSelector)
       .cloneNode(true);
 
     return cardElement;
@@ -68,9 +68,9 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
 
-    this._element.querySelector(cardSetting.cardImgSelector).src = this._link;
-    this._element.querySelector(cardSetting.cardImgSelector).alt = ` ${this._link}.`;
-    this._element.querySelector(cardSetting.cardTitleSelector).textContent = this._title;
+    this._element.querySelector(this._cardSetting.cardImgSelector).src = this._link;
+    this._element.querySelector(this._cardSetting.cardImgSelector).alt = ` ${this._link}.`;
+    this._element.querySelector(this._cardSetting.cardTitleSelector).textContent = this._title;
 
     this._setEventListeners();
 
