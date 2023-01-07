@@ -1,55 +1,31 @@
-import { showPopupImgCard } from './index.js'
+'use strict';
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-const cardSetting = {
-  cardTemplate: '#card',
-  cardSelector: '.card',
-  cardImgSelector: '.card__img',
-  cardTitleSelector: '.card__title',
-  cardDeleteBtnSelector: '.card__delete',
-  cardLikeBtnSelector: '.card__like',
-  activeLikeBtnClass: 'card__like_active'
-}
+import { showPopupImgCard } from './utils.js'
 
 class Card {
-  constructor(title, link, cardSetting) {
-    this._title = title;
-    this._link = link;
-    this._cardSetting = cardSetting
+  constructor(cardElement) {
+    this._cardSetting = {
+      cardTemplate: '#card',
+      cardSelector: '.card',
+      cardImgSelector: '.card__img',
+      cardTitleSelector: '.card__title',
+      cardDeleteBtnSelector: '.card__delete',
+      cardLikeBtnSelector: '.card__like',
+      activeLikeBtnClass: 'card__like_active'
+    };
+    this._name = cardElement.name;
+    this._link = cardElement.link;
   }
 
-  _deleteCard(cardDeleteBtn) {
-    cardDeleteBtn.closest(this._cardSetting.cardSelector).remove()
+  _deleteCard() {
+    this._element.remove()
+    this._element = null;
   }
 
-  _toggleCardLike(cardLikeBtn) {
-    cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass)
+  _toggleCardLike() {
+    this._cardLikeBtn = this._element.querySelector(this._cardSetting.cardLikeBtnSelector);
+
+    this._cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass);
   }
 
   _setEventListeners() {
@@ -58,15 +34,15 @@ class Card {
           cardImg = this._element.querySelector(this._cardSetting.cardImgSelector);
 
     cardDeleteBtn.addEventListener('click', () => {
-      this._deleteCard(cardDeleteBtn)
+      this._deleteCard()
     })
 
     cardLikeBtn.addEventListener('click', () => {
-      this._toggleCardLike(cardLikeBtn)
+      this._toggleCardLike()
     })
 
     cardImg.addEventListener('click', () => {
-      showPopupImgCard(cardImg, this._title);
+      showPopupImgCard(this._link, this._name);
     })
   }
 
@@ -82,10 +58,11 @@ class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImg = this._element.querySelector(this._cardSetting.cardImgSelector);
 
-    this._element.querySelector(this._cardSetting.cardImgSelector).src = this._link;
-    this._element.querySelector(this._cardSetting.cardImgSelector).alt = ` ${this._link}.`;
-    this._element.querySelector(this._cardSetting.cardTitleSelector).textContent = this._title;
+    this._cardImg.src = this._link;
+    this._cardImg.alt = ` ${this._link}.`;
+    this._element.querySelector(this._cardSetting.cardTitleSelector).textContent = this._name;
 
     this._setEventListeners();
 
@@ -93,4 +70,4 @@ class Card {
   }
 }
 
-export { Card, cardSetting, initialCards }
+export { Card }
