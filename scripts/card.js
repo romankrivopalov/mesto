@@ -1,3 +1,5 @@
+import { showPopupImgCard } from './index.js'
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -42,16 +44,29 @@ class Card {
     this._cardSetting = cardSetting
   }
 
+  _deleteCard(cardDeleteBtn) {
+    cardDeleteBtn.closest(this._cardSetting.cardSelector).remove()
+  }
+
+  _toggleCardLike(cardLikeBtn) {
+    cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass)
+  }
+
   _setEventListeners() {
     const cardDeleteBtn = this._element.querySelector(this._cardSetting.cardDeleteBtnSelector),
-          cardLikeBtn = this._element.querySelector(this._cardSetting.cardLikeBtnSelector);
+          cardLikeBtn = this._element.querySelector(this._cardSetting.cardLikeBtnSelector),
+          cardImg = this._element.querySelector(this._cardSetting.cardImgSelector);
 
     cardDeleteBtn.addEventListener('click', () => {
-      cardDeleteBtn.closest(this._cardSetting.cardSelector).remove()
+      this._deleteCard(cardDeleteBtn)
     })
 
     cardLikeBtn.addEventListener('click', () => {
-      cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass)
+      this._toggleCardLike(cardLikeBtn)
+    })
+
+    cardImg.addEventListener('click', () => {
+      showPopupImgCard(cardImg, this._title);
     })
   }
 
