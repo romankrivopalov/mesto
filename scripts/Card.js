@@ -2,42 +2,34 @@
 
 import { showPopupImgCard } from './utils.js'
 
+export default
 class Card {
-  constructor(cardElement) {
-    this._cardSetting = {
-      cardTemplate: '#card',
-      cardSelector: '.card',
-      cardImgSelector: '.card__img',
-      cardTitleSelector: '.card__title',
-      cardDeleteBtnSelector: '.card__delete',
-      cardLikeBtnSelector: '.card__like',
-      activeLikeBtnClass: 'card__like_active'
-    };
+  constructor(cardElement, cardSetting) {
+    this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
   }
 
   _deleteCard() {
-    this._element.remove()
-    this._element = null;
+    this._card.remove()
+    this._card = null;
   }
 
   _toggleCardLike() {
-    this._cardLikeBtn = this._element.querySelector(this._cardSetting.cardLikeBtnSelector);
-
     this._cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass);
   }
 
   _setEventListeners() {
-    const cardDeleteBtn = this._element.querySelector(this._cardSetting.cardDeleteBtnSelector),
-          cardLikeBtn = this._element.querySelector(this._cardSetting.cardLikeBtnSelector),
-          cardImg = this._element.querySelector(this._cardSetting.cardImgSelector);
+    const cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector),
+          cardImg = this._card.querySelector(this._cardSetting.cardImgSelector);
+
+    this._cardLikeBtn = this._card.querySelector(this._cardSetting.cardLikeBtnSelector);
 
     cardDeleteBtn.addEventListener('click', () => {
       this._deleteCard()
     })
 
-    cardLikeBtn.addEventListener('click', () => {
+    this._cardLikeBtn.addEventListener('click', () => {
       this._toggleCardLike()
     })
 
@@ -57,17 +49,15 @@ class Card {
   }
 
   generateCard() {
-    this._element = this._getTemplate();
-    this._cardImg = this._element.querySelector(this._cardSetting.cardImgSelector);
+    this._card = this._getTemplate();
+    this._cardImg = this._card.querySelector(this._cardSetting.cardImgSelector);
 
     this._cardImg.src = this._link;
     this._cardImg.alt = ` ${this._link}.`;
-    this._element.querySelector(this._cardSetting.cardTitleSelector).textContent = this._name;
+    this._card.querySelector(this._cardSetting.cardTitleSelector).textContent = this._name;
 
     this._setEventListeners();
 
-    return this._element;
+    return this._card;
   }
 }
-
-export { Card }

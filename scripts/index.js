@@ -1,80 +1,75 @@
 'use strict';
 
-import { initialCards, formSetting } from './constants.js';
-import { openPopup, closePopup } from './utils.js';
-import { Card } from './Card.js';
-import { FormValidator } from './Validate.js';
+import * as all from './constants.js';
+import Card from './Card.js';
 
-
-const popupList = document.querySelectorAll('.popup'),
-      profileTitle = document.querySelector('.profile__title'),
-      profileSubtitle = document.querySelector('.profile__subtitle'),
-      profileEditBtn = document.querySelector('.profile__edit-btn'),
-      profilePopup = document.querySelector('.popup[data-type="edit-popup"]'),
-      formEditProfile = document.forms['profile-form'],
-      inputName = formEditProfile.querySelector('.popup__input_type_name'),
-      inputSignature = formEditProfile.querySelector('.popup__input_type_about'),
-      cardsAddBtn = document.querySelector('.profile__add-btn'),
-      cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
-      formAddCard = document.forms['card-form'],
-      inputCardName = formAddCard.querySelector('.popup__input_type_name'),
-      inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
-      cardsContainer = document.querySelector('.cards__list'),
-      profileFormValidator = new FormValidator(formSetting, formEditProfile),
-      cardFormValidator = new FormValidator(formSetting, formAddCard);
-
-profileFormValidator.enableValidation();
-cardFormValidator.enableValidation();
+all.profileFormValidator.enableValidation();
+all.cardFormValidator.enableValidation();
 
 function addDefaultCards(elements) {
   elements.forEach((cardElement) => {
-    renderCard(createCard(cardElement));
+    renderCard(createCard(cardElement, all.cardSetting));
   })
 }
 
-function handleCardFormSubmit(evt) {
-  const cardElement = {
-    name: inputCardName.value,
-    link: inputCardLink.value
-  }
-
-  evt.target.reset();
-  cardFormValidator.disableSubmitButton();
-
-  renderCard(createCard(cardElement));
-  closePopup(cardsPopup);
+function renderCard(card) {
+  all.cardsContainer.prepend(card);
 }
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  profileTitle.textContent = inputName.value;
-  profileSubtitle.textContent = inputSignature.value;
-
-  closePopup(profilePopup);
-}
-
-function handleProfileForm(evt) {
-  evt.preventDefault();
-
-  inputName.value = profileTitle.textContent;
-  inputSignature.value = profileSubtitle.textContent;
-
-  profileFormValidator.checkInputValidityAfterOpen()
-  openPopup(profilePopup);
-}
-
 
 function createCard(name, link) {
   const card = new Card(name, link);
   return card.generateCard();
 }
 
-function renderCard(card) {
-  cardsContainer.prepend(card);
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscape)
 }
 
-popupList.forEach((popup) => {
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscape)
+}
+
+function handleEscape(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'))
+  }
+}
+
+function handleCardFormSubmit(evt) {
+  const cardData = {
+    name: all.inputCardName.value,
+    link: all.inputCardLink.value
+  }
+
+  evt.target.reset();
+  all.cardFormValidator.disableSubmitButton();
+
+  renderCard(createCard(cardData, all.cardSetting));
+  closePopup(all.cardsPopup);
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+
+  all.profileTitle.textContent = all.inputName.value;
+  all.profileSubtitle.textContent = all.inputSignature.value;
+
+  closePopup(all.profilePopup);
+}
+
+function openProfileEditPopup(evt) {
+  evt.preventDefault();
+
+  all.inputName.value = all.profileTitle.textContent;
+  all.inputSignature.value = all.profileSubtitle.textContent;
+
+  all.profileFormValidator.checkInputValidity();
+  openPopup(all.profilePopup);
+}
+
+all.popupList.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       closePopup(popup)
@@ -84,13 +79,15 @@ popupList.forEach((popup) => {
   })
 })
 
-profileEditBtn.addEventListener('click', handleProfileForm);
+all.profileEditBtn.addEventListener('click', openProfileEditPopup);
 
-cardsAddBtn.addEventListener('click', () => {
-  openPopup(cardsPopup);
+all.cardsAddBtn.addEventListener('click', () => {
+  openPopup(all.cardsPopup);
 });
 
-formEditProfile.addEventListener('submit', handleProfileFormSubmit);
-formAddCard.addEventListener('submit', handleCardFormSubmit);
+all.formEditProfile.addEventListener('submit', handleProfileFormSubmit);
+all.formAddCard.addEventListener('submit', handleCardFormSubmit);
 
-addDefaultCards(initialCards);
+addDefaultCards(all.initialCards);
+
+export { openPopup }
