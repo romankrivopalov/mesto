@@ -1,5 +1,6 @@
 'use strict';
 
+export default
 class FormValidator {
   constructor(formSetting, form) {
     this._formSetting = formSetting;
@@ -66,11 +67,9 @@ class FormValidator {
     this._toggleButtonState()
   }
 
-  checkInputValidityAfterOpen() {
+  checkInputValidity() {
     this._inputList.forEach(inputElement => {
       this._checkInputValidity(inputElement);
     })
   }
 }
-
-export { FormValidator }
