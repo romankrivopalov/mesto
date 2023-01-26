@@ -16,8 +16,8 @@ function renderCard(card) {
   all.cardsContainer.prepend(card);
 }
 
-function createCard(name, link) {
-  const card = new Card(name, link);
+function createCard(cardElement, cardSetting) {
+  const card = new Card(cardElement, cardSetting);
   return card.generateCard();
 }
 
@@ -38,7 +38,7 @@ function handleEscape(evt) {
 }
 
 function handleCardFormSubmit(evt) {
-  const cardData = {
+  const cardElement = {
     name: all.inputCardName.value,
     link: all.inputCardLink.value
   }
@@ -46,7 +46,7 @@ function handleCardFormSubmit(evt) {
   evt.target.reset();
   all.cardFormValidator.disableSubmitButton();
 
-  renderCard(createCard(cardData, all.cardSetting));
+  renderCard(createCard(cardElement, all.cardSetting));
   closePopup(all.cardsPopup);
 }
 
