@@ -1,0 +1,20 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "> classes, в разработке",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romankrivopalov/mesto.git"
+  },
+  "author": "Roman Krivopalov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romankrivopalov/mesto/issues"
+  },
+  "homepage": "https://github.com/romankrivopalov/mesto#readme"
+}
