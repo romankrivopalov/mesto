@@ -1,7 +1,7 @@
 'use strict';
 
-import * as all from './constants.js';
-import Card from './Card.js';
+import * as all from '../utils/constants.js';
+import Card from '../components/Card.js';
 
 all.profileFormValidator.enableValidation();
 all.cardFormValidator.enableValidation();

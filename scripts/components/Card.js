@@ -1,6 +1,6 @@
 'use strict';
 
-import { showPopupImgCard } from './utils.js'
+import { showPopupImgCard } from '../utils/utils.js'
 
 export default
 class Card {
