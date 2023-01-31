@@ -1,25 +1,22 @@
 'use strict';
 
 import * as all from '../utils/constants.js';
+import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 
 all.profileFormValidator.enableValidation();
 all.cardFormValidator.enableValidation();
 
-function addDefaultCards(elements) {
-  elements.forEach((cardElement) => {
-    renderCard(createCard(cardElement, all.cardSetting));
-  })
-}
+const defaultCardList = new Section({
+  data: all.initialCards,
+  renderer: (item) => {
+    const card = new Card(item, all.cardSetting);
+    const cardElement = card.generateCard();
+    defaultCardList.addItem(cardElement)
+  }
+}, all.cardsContainer);
 
-function renderCard(card) {
-  all.cardsContainer.prepend(card);
-}
-
-function createCard(cardElement, cardSetting) {
-  const card = new Card(cardElement, cardSetting);
-  return card.generateCard();
-}
+defaultCardList.renderCards();
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -46,7 +43,23 @@ function handleCardFormSubmit(evt) {
   evt.target.reset();
   all.cardFormValidator.disableSubmitButton();
 
-  renderCard(createCard(cardElement, all.cardSetting));
+  class UserCard extends Section {
+    renderCard = () => {
+      this._renderer(this._data);
+    }
+  }
+
+  const userCard = new UserCard({
+    data: cardElement,
+    renderer: (item) => {
+      const card = new Card(item, all.cardSetting);
+      const cardElement = card.generateCard();
+      userCard.addItem(cardElement)
+    }
+  }, all.cardsContainer);
+
+  userCard.renderCard();
+
   closePopup(all.cardsPopup);
 }
 
@@ -88,6 +101,6 @@ all.cardsAddBtn.addEventListener('click', () => {
 all.formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 all.formAddCard.addEventListener('submit', handleCardFormSubmit);
 
-addDefaultCards(all.initialCards);
+// addDefaultCards(all.initialCards);
 
 export { openPopup }
