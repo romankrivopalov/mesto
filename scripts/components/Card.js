@@ -1,25 +1,24 @@
 'use strict';
 
-import { showPopupImgCard } from '../utils/utils.js'
-
 export default
 class Card {
-  constructor(cardElement, cardSetting) {
+  constructor(cardElement, cardSetting, handleCardClick) {
     this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
+    this._handleCardClick = handleCardClick;
   }
 
-  _deleteCard() {
+  _deleteCard = () => {
     this._card.remove()
     this._card = null;
   }
 
-  _toggleCardLike() {
+  _toggleCardLike = () => {
     this._cardLikeBtn.classList.toggle(this._cardSetting.activeLikeBtnClass);
   }
 
-  _setEventListeners() {
+  _setEventListeners = () => {
     const cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector),
           cardImg = this._card.querySelector(this._cardSetting.cardImgSelector);
 
@@ -34,11 +33,11 @@ class Card {
     })
 
     cardImg.addEventListener('click', () => {
-      showPopupImgCard(this._link, this._name);
+      this._handleCardClick(this._link, this._name);
     })
   }
 
-  _getTemplate() {
+  _getTemplate = () => {
     const cardElement = document
       .querySelector(this._cardSetting.cardTemplate)
       .content
@@ -48,7 +47,7 @@ class Card {
     return cardElement;
   }
 
-  generateCard() {
+  generateCard = () => {
     this._card = this._getTemplate();
     this._cardImg = this._card.querySelector(this._cardSetting.cardImgSelector);
 

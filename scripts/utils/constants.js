@@ -18,12 +18,10 @@ const popupList = document.querySelectorAll('.popup'),
       profileTitle = document.querySelector('.profile__title'),
       profileSubtitle = document.querySelector('.profile__subtitle'),
       profileEditBtn = document.querySelector('.profile__edit-btn'),
-      profilePopup = document.querySelector('.popup[data-type="edit-popup"]'),
       formEditProfile = document.forms['profile-form'],
       inputName = formEditProfile.querySelector('.popup__input_type_name'),
       inputSignature = formEditProfile.querySelector('.popup__input_type_about'),
       cardsAddBtn = document.querySelector('.profile__add-btn'),
-      cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
       formAddCard = document.forms['card-form'],
       inputCardName = formAddCard.querySelector('.popup__input_type_name'),
       inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
@@ -69,3 +67,10 @@ const cardSetting = {
   cardLikeBtnSelector: '.card__like',
   activeLikeBtnClass: 'card__like_active'
 };
+
+export
+const popupSelectors = {
+  profilePopup: '.popup[data-type="edit-popup"]',
+  cardsPopup: '.popup[data-type="add-popup"]',
+  imgPopup: '.popup[data-type="img-popup"]'
+}

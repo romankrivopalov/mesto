@@ -3,6 +3,7 @@
 import * as all from '../utils/constants.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 all.profileFormValidator.enableValidation();
 all.cardFormValidator.enableValidation();
@@ -10,29 +11,16 @@ all.cardFormValidator.enableValidation();
 const defaultCardList = new Section({
   data: all.initialCards,
   renderer: (item) => {
-    const card = new Card(item, all.cardSetting);
+    const card = new Card(
+      item,
+      all.cardSetting,
+      () => { popupWithImage.open(item.link, item.name) }
+    );
     const cardElement = card.generateCard();
     defaultCardList.addItem(cardElement)
   }
 }, all.cardsContainer);
 
-defaultCardList.renderCards();
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEscape)
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscape)
-}
-
-function handleEscape(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector('.popup_opened'))
-  }
-}
 
 function handleCardFormSubmit(evt) {
   const cardElement = {
@@ -76,16 +64,6 @@ function openProfileEditPopup(evt) {
   openPopup(all.profilePopup);
 }
 
-all.popupList.forEach((popup) => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    } else if (evt.target.classList.contains('popup__close')) {
-      closePopup(popup)
-    }
-  })
-})
-
 all.profileEditBtn.addEventListener('click', openProfileEditPopup);
 
 all.cardsAddBtn.addEventListener('click', () => {
@@ -95,6 +73,7 @@ all.cardsAddBtn.addEventListener('click', () => {
 all.formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 all.formAddCard.addEventListener('submit', handleCardFormSubmit);
 
-// addDefaultCards(all.initialCards);
+const popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup);
+popupWithImage.setEventListeners();
 
-export { openPopup }
+defaultCardList.renderCards();
