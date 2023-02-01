@@ -43,14 +43,8 @@ function handleCardFormSubmit(evt) {
   evt.target.reset();
   all.cardFormValidator.disableSubmitButton();
 
-  class UserCard extends Section {
-    renderCard = () => {
-      this._renderer(this._data);
-    }
-  }
-
   const userCard = new UserCard({
-    data: cardElement,
+    data: [cardElement],
     renderer: (item) => {
       const card = new Card(item, all.cardSetting);
       const cardElement = card.generateCard();
