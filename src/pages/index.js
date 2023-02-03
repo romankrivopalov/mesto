@@ -5,15 +5,15 @@ import './index.css';
 import * as all from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
-import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import FormValidator from '../components/FormValidator.js';
 
-const profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile),
+const userInfo = new UserInfo(all.userInfoData),
       cardFormValidator = new FormValidator(all.formSetting, all.formAddCard),
-      userInfo = new UserInfo(all.userInfoData),
-      popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup);
+      popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup),
+      profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile);
 
 const defaultCardList = new Section({
     data: all.initialCards,
@@ -73,12 +73,11 @@ all.cardsAddBtn.addEventListener('click', () => {
   cardsPopup.open();
 });
 
-
-profileFormValidator.enableValidation();
-cardFormValidator.enableValidation();
+defaultCardList.renderCards();
 
 profilePopup.setEventListeners();
 cardsPopup.setEventListeners();
 popupWithImage.setEventListeners();
 
-defaultCardList.renderCards();
+profileFormValidator.enableValidation();
+cardFormValidator.enableValidation();

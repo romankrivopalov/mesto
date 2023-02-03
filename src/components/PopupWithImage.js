@@ -1,3 +1,5 @@
+'use strict';
+
 import Popup from './Popup.js'
 
 export default
