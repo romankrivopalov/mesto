@@ -1,5 +1,7 @@
 'use strict';
 
+import './index.css';
+
 import * as all from '../utils/constants.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';

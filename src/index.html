@@ -8,15 +8,14 @@
   <meta name="keywords" content="HTML, CSS, JavaScript, JS, Mesto">
   <meta name="description" content="Интерактивный сервис Mesto, веб-разработчик Роман Кривопалов">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
   <header class="header container">
-    <img src="images/logo-white.svg" alt=" Логотип сервиса Место." class="header__logo">
+    <img src="<%=require('./images/logo-white.svg')%>" alt=" Логотип сервиса Место." class="header__logo">
   </header>
   <main>
     <section class="profile container">
-      <img src="images/profile-avatar.jpg" alt=" Улыбающийся мужчина в красной шапке и очках, на фоне моря." class="profile__avatar">
+      <img src="<%=require('./images/profile-avatar.jpg')%>" alt=" Улыбающийся мужчина в красной шапке и очках, на фоне моря." class="profile__avatar">
       <div class="profile__info">
         <div class="profile__info-wrapper">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -124,6 +123,5 @@
     </li>
   </template>
 
-  <script type="module" src="scripts/pages/index.js"></script>
 </body>
 </html>
