@@ -15,7 +15,7 @@ const userInfo = new UserInfo(all.userInfoData),
       popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup),
       profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile);
 
-const defaultCardList = new Section({
+const cardList = new Section({
     data: all.initialCards,
     renderer: (item) => {
       const card = new Card(
@@ -24,7 +24,7 @@ const defaultCardList = new Section({
         () => { popupWithImage.open(item.link, item.name) }
       );
       const cardElement = card.generateCard();
-      defaultCardList.addItem(cardElement)
+      cardList.addItem(cardElement)
     }
   }, all.cardsContainerSelector);
 
@@ -35,30 +35,24 @@ const profilePopup = new PopupWithForm(
   });
 
 const cardsPopup = new PopupWithForm(
-    all.popupSelectors.cardsPopup,
-    (inputFormValues) => {
-      const userCard = new Section({
-        data: [inputFormValues],
-        renderer: (item) => {
-          const card = new Card(
-            item,
-            all.cardSetting,
-            () => { popupWithImage.open(item.link, item.name) }
-          );
-          const cardElement = card.generateCard();
-          userCard.addItem(cardElement)
-        }
-      }, all.cardsContainerSelector);
-
-      userCard.renderCards();
-    }
-  );
+  all.popupSelectors.cardsPopup,
+  (item) => {
+    const card = new Card(
+      item,
+      all.cardSetting,
+      () => { popupWithImage.open(item.link, item.name) }
+    );
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+);
 
 all.profileEditBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
 
-  all.inputTitle.value = userInfo.getUserInfo().userTitle;
-  all.inputSubtitle.value = userInfo.getUserInfo().userSubtitle;
+  const {userTitle, userSubtitle} = userInfo.getUserInfo();
+  all.inputTitle.value = userTitle;
+  all.inputSubtitle.value = userSubtitle;
 
   profileFormValidator.checkInputValidity();
 
@@ -69,7 +63,7 @@ all.cardsAddBtn.addEventListener('click', () => {
   cardsPopup.open();
 });
 
-defaultCardList.renderCards();
+cardList.renderCards();
 
 profilePopup.setEventListeners();
 cardsPopup.setEventListeners();
