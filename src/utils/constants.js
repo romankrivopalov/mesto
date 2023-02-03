@@ -51,8 +51,8 @@ const cardSetting = {
 
 export
 const userInfoData = {
-      profileTitle: '.profile__title',
-      profileSubtitle: '.profile__subtitle'
+      profileTitleSelector: '.profile__title',
+      profileSubtitleSelector: '.profile__subtitle'
 };
 
 export

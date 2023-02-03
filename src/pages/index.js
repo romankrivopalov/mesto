@@ -31,7 +31,8 @@ const defaultCardList = new Section({
 const profilePopup = new PopupWithForm(
     all.popupSelectors.profilePopup,
     () => {
-      userInfo.setUserInfo(all.inputTitle, all.inputSubtitle)
+      userInfo.setUserInfo(formData)
+      console.log(formData)
 
       profilePopup.close()
   });

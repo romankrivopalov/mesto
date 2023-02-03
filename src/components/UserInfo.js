@@ -2,9 +2,9 @@
 
 export default
 class UserInfo {
-  constructor({ profileTitle, profileSubtitle }) {
-    this._userTitle = document.querySelector(profileTitle);
-    this._userSubtitle = document.querySelector(profileSubtitle);
+  constructor({ profileTitleSelector, profileSubtitleSelector }) {
+    this._userTitle = document.querySelector(profileTitleSelector);
+    this._userSubtitle = document.querySelector(profileSubtitleSelector);
   }
 
   getUserInfo = () => {
@@ -14,8 +14,8 @@ class UserInfo {
     };
   }
 
-  setUserInfo = (inputTitle, inputSubtitle) => {
-    this._userTitle.textContent = inputTitle.value;
-    this._userSubtitle.textContent = inputSubtitle.value;
+  setUserInfo = (formData) => {
+    this._userTitle.textContent = formData.name;
+    this._userSubtitle.textContent = formData.about;
   }
 }
