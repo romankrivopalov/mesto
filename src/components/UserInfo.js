@@ -15,6 +15,7 @@ class UserInfo {
   }
 
   setUserInfo = (formData) => {
+    console.log(formData)
     this._userTitle.textContent = formData.name;
     this._userSubtitle.textContent = formData.about;
   }

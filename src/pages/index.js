@@ -30,7 +30,7 @@ const defaultCardList = new Section({
 
 const profilePopup = new PopupWithForm(
     all.popupSelectors.profilePopup,
-    () => {
+    (formData) => {
       userInfo.setUserInfo(formData)
       console.log(formData)
 
