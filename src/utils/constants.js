@@ -72,4 +72,4 @@ const popupList = document.querySelectorAll('.popup'),
       formAddCard = document.forms['card-form'],
       inputCardName = formAddCard.querySelector('.popup__input_type_name'),
       inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
-      cardsContainer = document.querySelector('.cards__list');
+      cardsContainerSelector = '.cards__list';

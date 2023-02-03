@@ -26,7 +26,7 @@ const defaultCardList = new Section({
       const cardElement = card.generateCard();
       defaultCardList.addItem(cardElement)
     }
-  }, all.cardsContainer);
+  }, all.cardsContainerSelector);
 
 const profilePopup = new PopupWithForm(
     all.popupSelectors.profilePopup,
@@ -51,7 +51,7 @@ const cardsPopup = new PopupWithForm(
           const cardElement = card.generateCard();
           userCard.addItem(cardElement)
         }
-      }, all.cardsContainer);
+      }, all.cardsContainerSelector);
 
       userCard.renderCards();
 
