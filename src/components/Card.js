@@ -10,7 +10,8 @@ class Card {
   }
 
   _deleteCard = () => {
-    this._card.remove()
+    this._card.remove();
+    this._cardImg = '';
     this._card = null;
   }
 
@@ -19,8 +20,7 @@ class Card {
   }
 
   _setEventListeners = () => {
-    const cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector),
-          cardImg = this._card.querySelector(this._cardSetting.cardImgSelector);
+    const cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector);
 
     this._cardLikeBtn = this._card.querySelector(this._cardSetting.cardLikeBtnSelector);
 
@@ -32,7 +32,7 @@ class Card {
       this._toggleCardLike()
     })
 
-    cardImg.addEventListener('click', () => {
+    this._cardImg.addEventListener('click', () => {
       this._handleCardClick(this._link, this._name);
     })
   }
