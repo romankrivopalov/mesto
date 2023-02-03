@@ -32,9 +32,6 @@ const profilePopup = new PopupWithForm(
     all.popupSelectors.profilePopup,
     (formData) => {
       userInfo.setUserInfo(formData)
-      console.log(formData)
-
-      profilePopup.close()
   });
 
 const cardsPopup = new PopupWithForm(
@@ -54,8 +51,6 @@ const cardsPopup = new PopupWithForm(
       }, all.cardsContainerSelector);
 
       userCard.renderCards();
-
-      cardsPopup.close();
     }
   );
 
