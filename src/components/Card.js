@@ -11,7 +11,7 @@ class Card {
 
   _deleteCard = () => {
     this._card.remove();
-    this._cardImg = '';
+    this._cardImg = null;
     this._card = null;
   }
 
