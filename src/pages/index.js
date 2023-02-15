@@ -3,6 +3,7 @@
 import './index.css';
 
 import * as all from '../utils/constants.js';
+import Api from '../components/Api.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
@@ -14,6 +15,14 @@ const userInfo = new UserInfo(all.userInfoData),
       cardFormValidator = new FormValidator(all.formSetting, all.formAddCard),
       popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup),
       profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile);
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'bdecdc76-75a5-40e2-94d6-35ac4e7b5bcc',
+    'Content-Type': 'application/json'
+  }
+})
 
 const cardList = new Section({
     data: all.initialCards,
