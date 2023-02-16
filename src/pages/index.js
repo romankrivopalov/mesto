@@ -24,17 +24,17 @@ const api = new Api({
   }
 })
 
-Promise.all([api.getUserInfo()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
-    const [ formData ] = res;
+    const [ formData, cardsArray ] = res;
 
+    cardList.renderCards(cardsArray);
     userInfo.setUserInfo(formData)
   })
   .catch(err => console.log(err));
 
-const cardList = new Section({
-    data: all.initialCards,
-    renderer: (item) => {
+const cardList = new Section(
+    (item) => {
       const card = new Card(
         item,
         all.cardSetting,
@@ -42,8 +42,7 @@ const cardList = new Section({
       );
       const cardElement = card.generateCard();
       cardList.addItem(cardElement)
-    }
-  }, all.cardsContainerSelector);
+    }, all.cardsContainerSelector);
 
 const profilePopup = new PopupWithForm(
     all.popupSelectors.profilePopup,
@@ -79,8 +78,6 @@ all.profileEditBtn.addEventListener('click', (evt) => {
 all.cardsAddBtn.addEventListener('click', () => {
   cardsPopup.open();
 });
-
-cardList.renderCards();
 
 profilePopup.setEventListeners();
 cardsPopup.setEventListeners();
