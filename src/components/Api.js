@@ -49,4 +49,19 @@ class Api {
       console.log(err);
     })
   }
+
+  postNewCard(cardElement) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: cardElement.name,
+        link: cardElement.link
+      })
+    })
+    .then(res => this._checkStatusRequest(res))
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 }

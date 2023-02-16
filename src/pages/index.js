@@ -56,13 +56,23 @@ const profilePopup = new PopupWithForm(
 const cardsPopup = new PopupWithForm(
   all.popupSelectors.cardsPopup,
   (item) => {
-    const card = new Card(
-      item,
-      all.cardSetting,
-      () => { popupWithImage.open(item.link, item.name) }
-    );
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
+    api.postNewCard(item)
+      .then((res) => {
+        const card = new Card(
+          res,
+          all.cardSetting,
+          () => { popupWithImage.open(item.link, item.name) }
+        );
+
+        return card
+      })
+      .then((card) => {
+        const cardElement = card.generateCard();
+        cardList.addItem(cardElement);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 );
 

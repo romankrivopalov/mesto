@@ -12,6 +12,6 @@ class Section {
   }
 
   renderCards = (data) => {
-    data.forEach(this._renderer)
+    data.reverse().forEach(this._renderer)
   }
 }
