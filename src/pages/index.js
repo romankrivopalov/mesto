@@ -24,6 +24,14 @@ const api = new Api({
   }
 })
 
+Promise.all([api.getUserInfo()])
+  .then(res => {
+    const [ formData ] = res;
+
+    userInfo.setUserInfo(formData)
+  })
+  .catch(err => console.log(err));
+
 const cardList = new Section({
     data: all.initialCards,
     renderer: (item) => {
