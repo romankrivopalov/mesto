@@ -46,9 +46,12 @@ const cardList = new Section(
 
 const profilePopup = new PopupWithForm(
     all.popupSelectors.profilePopup,
+
     (formData) => {
+      api.setUserInfo(formData)
       userInfo.setUserInfo(formData)
-  });
+    }
+  );
 
 const cardsPopup = new PopupWithForm(
   all.popupSelectors.cardsPopup,
