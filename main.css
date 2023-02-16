@@ -18,8 +18,10 @@
 .card__img{background-color:var(--color-black);color:var(--color-white);cursor:pointer;display:block;height:282px;margin:0;-o-object-fit:cover;object-fit:cover;padding:0;width:100%}
 .card__title{color:var(--color-black);font-size:24px;font-weight:900;line-height:79px;margin:0 63px 0 21px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}
 .card__delete{background-color:transparent;background-image:url(images/icon-delete.ce3b64935accf9b8212e.svg);background-position:50%;background-repeat:no-repeat;background-size:18px 19px;border:none;cursor:pointer;height:30px;margin:0;padding:0;position:absolute;right:14px;top:20px;transition:opacity .3s ease-in-out;width:30px}.card__delete:hover{opacity:.6}
-.card__like{background-color:inherit;background-image:url(images/icon-like.a826148813c6daed73b0.svg);background-position:50%;background-repeat:no-repeat;border:none;bottom:30px;cursor:pointer;height:19px;margin:0;padding:0;position:absolute;right:20px;transition:opacity .3s ease-in-out;width:22px}.card__like:hover{opacity:.5}
-.card__like_active{background-image:url(images/icon-like-active.35948469632d0421d697.svg)}
+.card__like-container{align-items:center;bottom:22px;display:flex;flex-direction:column;position:absolute;right:20px}
+.card__like-icon{background-color:inherit;background-image:url(images/icon-like.a826148813c6daed73b0.svg);background-position:50%;background-repeat:no-repeat;border:none;cursor:pointer;height:19px;margin:0;padding:0;transition:opacity .3s ease-in-out;width:22px}.card__like-icon:hover{opacity:.5}
+.card__like-icon_active{background-image:url(images/icon-like-active.35948469632d0421d697.svg)}
+.card__like-counter{color:var(--color-black);font-size:13px;line-height:16px;padding-top:3px}
 .footer{padding:0 19px}@media screen and (min-width:992px){.footer{max-width:880px;padding:0}}
 .footer__copyrigth{color:var(--color-gray);font-size:14px;line-height:17px;margin:48px 0 36px}@media screen and (min-width:768px){.footer__copyrigth{font-size:18px;line-height:22px}}@media screen and (min-width:992px){.footer__copyrigth{margin:66px 0 60px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);box-sizing:border-box;display:flex;height:100vh;justify-content:center;left:0;margin:0;opacity:0;padding:0 19px;position:fixed;top:0;transition:opacity .3s ease-in-out,visibility .3s ease-in-out;visibility:hidden;width:100%}@media screen and (min-width:992px){.popup{padding:0}}
