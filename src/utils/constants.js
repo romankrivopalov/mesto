@@ -45,8 +45,9 @@ const cardSetting = {
       cardImgSelector: '.card__img',
       cardTitleSelector: '.card__title',
       cardDeleteBtnSelector: '.card__delete',
-      cardLikeBtnSelector: '.card__like',
-      activeLikeBtnClass: 'card__like_active'
+      cardLikeBtnSelector: '.card__like-icon',
+      activeLikeBtnClass: 'card__like-icon_active',
+      cardLikeCounter: '.card__like-counter'
 };
 
 export

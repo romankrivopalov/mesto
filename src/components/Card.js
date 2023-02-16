@@ -6,6 +6,8 @@ class Card {
     this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
+    this._likeCounter = cardElement.likes.length;
+
     this._handleCardClick = handleCardClick;
   }
 
@@ -54,6 +56,9 @@ class Card {
     this._cardImg.src = this._link;
     this._cardImg.alt = ` ${this._link}.`;
     this._card.querySelector(this._cardSetting.cardTitleSelector).textContent = this._name;
+
+    this._cardLikeCounter = this._card.querySelector(this._cardSetting.cardLikeCounter);
+    this._cardLikeCounter.textContent = this._likeCounter;
 
     this._setEventListeners();
 

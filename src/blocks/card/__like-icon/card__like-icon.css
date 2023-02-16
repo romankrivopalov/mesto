@@ -1,7 +1,7 @@
-.card__like {
-  position: absolute;
+.card__like-icon {
+  /* position: absolute;
   right: 20px;
-  bottom: 30px;
+  bottom: 30px; */
   margin: 0;
   padding: 0;
   width: 22px;
@@ -15,6 +15,6 @@
   transition: opacity .3s ease-in-out;
 }
 
-.card__like:hover {
+.card__like-icon:hover {
   opacity: .5;
 }
