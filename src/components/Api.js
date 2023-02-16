@@ -7,17 +7,19 @@ class Api {
     this._headers = options.headers;
   }
 
+  _checkStatusRequest(res) {
+    if(res.ok) {
+      return res.json()
+    }
+
+    return Promise.reject(res.status)
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then((res) => {
-      if(res.ok) {
-        return res.json()
-      }
-
-      return Promise.reject(res.status)
-    })
+    .then(res => this._checkStatusRequest(res))
     .catch((err) => {
       console.log(err);
     })
@@ -27,13 +29,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then((res) => {
-      if(res.ok) {
-        return res.json()
-      }
-
-      return Promise.reject(res.status)
-    })
+    .then(res => this._checkStatusRequest(res))
     .catch((err) => {
       console.log(err);
     })
@@ -48,13 +44,7 @@ class Api {
         about: about
       })
     })
-    .then((res) => {
-      if(res.ok) {
-        return res.json()
-      }
-
-      return Promise.reject(res.status)
-    })
+    .then(res => this._checkStatusRequest(res))
     .catch((err) => {
       console.log(err);
     })
