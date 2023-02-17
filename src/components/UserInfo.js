@@ -7,6 +7,10 @@ class UserInfo {
     this._userSubtitle = document.querySelector(profileSubtitleSelector);
   }
 
+  fillData = (id) => {
+    this.currentId = id
+  }
+
   getUserInfo = () => {
     return {
       userTitle: this._userTitle.textContent,

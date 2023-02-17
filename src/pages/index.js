@@ -9,37 +9,40 @@ import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import FormValidator from '../components/FormValidator.js';
 
 const api = new Api(all.apiSetting),
       userInfo = new UserInfo(all.userInfoData),
-      cardFormValidator = new FormValidator(all.formSetting, all.formAddCard),
+      profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile),
       popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup),
-      profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile);
+      popupWithConfirm = new PopupWithConfirm(all.popupSelectors.confirmPopup),
+      cardFormValidator = new FormValidator(all.formSetting, all.formAddCard);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
     const [ userData, cardsArray ] = res;
 
-    cardList.renderCards(cardsArray);
-    userInfo.setUserInfo(userData)
+    cardList.renderCards(cardsArray, userData);
+    userInfo.setUserInfo(userData);
   })
   .catch(err => console.log(err));
 
 
-
-
 const cardList = new Section(
   (item) => {
-    cardList.addItem(createCard(item, () => { handleCardClick(item) }))
+    cardList.addItem(createCard(
+      item,
+      () => { handleCardClick(item) },
+      () => { handleConfirmClick(item),
+      userInfo }))
   }, all.cardsContainerSelector);
 
 const profilePopup = new PopupWithForm(
   all.popupSelectors.profilePopup,
-
-  (formData) => {
-    api.setUserInfo(formData)
-    userInfo.setUserInfo(formData)
+  (userData) => {
+    api.setUserInfo(userData)
+    userInfo.setUserInfo(userData)
   }
 );
 
@@ -48,7 +51,11 @@ const cardsPopup = new PopupWithForm(
   (item) => {
     api.postNewCard(item)
       .then((res) => {
-        cardList.addItem(createCard(res, () => { handleCardClick(res) }))
+        cardList.addItem(createCard(
+          res,
+          () => { handleCardClick(res) },
+          () => { handleConfirmClick(res),
+          userInfo }))
       })
       .catch((err) => {
         console.log(err);
@@ -58,13 +65,17 @@ const cardsPopup = new PopupWithForm(
 
 
 
-function createCard(cardElement, handleCardClick) {
-  const card = new Card(cardElement, all.cardSetting, handleCardClick );
+function createCard(cardElement, handleCardClick, handleConfirmClick, userInfo ) {
+  const card = new Card(cardElement, all.cardSetting, handleCardClick, handleConfirmClick, userInfo );
   return card.generateCard();
 }
 
 function handleCardClick(cardElement) {
   popupWithImage.open(cardElement.link, cardElement.name);
+}
+
+function handleConfirmClick(cardElement) {
+  popupWithConfirm.open(cardElement.link, cardElement.name);
 }
 
 
@@ -89,6 +100,7 @@ all.cardsAddBtn.addEventListener('click', () => {
 profilePopup.setEventListeners();
 cardsPopup.setEventListeners();
 popupWithImage.setEventListeners();
+popupWithConfirm.setEventListeners();
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();

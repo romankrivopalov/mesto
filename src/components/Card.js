@@ -2,10 +2,12 @@
 
 export default
 class Card {
-  constructor(cardElement, cardSetting, handleCardClick, handleConfirmClick) {
+  constructor(cardElement, cardSetting, handleCardClick, handleConfirmClick, userInfo) {
     this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
+    this._currentId = userInfo.id;
+    this._ownerId = cardElement._id;
     this._likeCounter = cardElement.likes.length;
 
     this._handleCardClick = handleCardClick;
@@ -18,9 +20,8 @@ class Card {
     this._card = null;
   }
 
-  _askUser = (card) => {
-    console.log(card)
-    this._handleConfirmClick(card);
+  _askUserBeforeDelete = () => {
+    this._handleConfirmClick();
   }
 
   _toggleCardLike = () => {
@@ -28,13 +29,13 @@ class Card {
   }
 
   _setEventListeners = () => {
-    const cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector);
+    if (this._cardDeleteBtn) {
+      this._cardDeleteBtn.addEventListener('click', () => {
+        this._askUserBeforeDelete();
+      })
+    }
 
     this._cardLikeBtn = this._card.querySelector(this._cardSetting.cardLikeBtnSelector);
-
-    cardDeleteBtn.addEventListener('click', () => {
-      this._askUser()
-    })
 
     this._cardLikeBtn.addEventListener('click', () => {
       this._toggleCardLike()
@@ -62,6 +63,14 @@ class Card {
     this._cardImg.src = this._link;
     this._cardImg.alt = ` ${this._link}.`;
     this._card.querySelector(this._cardSetting.cardTitleSelector).textContent = this._name;
+
+    this._cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector);
+
+    if (this.__currentId != this._ownerId) {
+      // console.log(this.__currentId);
+      // console.log(this._ownerId);
+      this._cardDeleteBtn.remove();
+    }
 
     this._cardLikeCounter = this._card.querySelector(this._cardSetting.cardLikeCounter);
     this._cardLikeCounter.textContent = this._likeCounter;
