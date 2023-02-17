@@ -2,19 +2,25 @@
 
 export default
 class Card {
-  constructor(cardElement, cardSetting, handleCardClick) {
+  constructor(cardElement, cardSetting, handleCardClick, handleConfirmClick) {
     this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
     this._likeCounter = cardElement.likes.length;
 
     this._handleCardClick = handleCardClick;
+    this._handleConfirmClick = handleConfirmClick;
   }
 
-  _deleteCard = () => {
+  deleteCard = () => {
     this._card.remove();
     this._cardImg = null;
     this._card = null;
+  }
+
+  _askUser = (card) => {
+    console.log(card)
+    this._handleConfirmClick(card);
   }
 
   _toggleCardLike = () => {
@@ -27,7 +33,7 @@ class Card {
     this._cardLikeBtn = this._card.querySelector(this._cardSetting.cardLikeBtnSelector);
 
     cardDeleteBtn.addEventListener('click', () => {
-      this._deleteCard()
+      this._askUser()
     })
 
     this._cardLikeBtn.addEventListener('click', () => {
