@@ -11,70 +11,64 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import FormValidator from '../components/FormValidator.js';
 
-const userInfo = new UserInfo(all.userInfoData),
+const api = new Api(all.apiSetting),
+      userInfo = new UserInfo(all.userInfoData),
       cardFormValidator = new FormValidator(all.formSetting, all.formAddCard),
       popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup),
       profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile);
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
-  headers: {
-    authorization: 'bdecdc76-75a5-40e2-94d6-35ac4e7b5bcc',
-    'Content-Type': 'application/json'
-  }
-})
-
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
-    const [ formData, cardsArray ] = res;
+    const [ userData, cardsArray ] = res;
 
     cardList.renderCards(cardsArray);
-    userInfo.setUserInfo(formData)
+    userInfo.setUserInfo(userData)
   })
   .catch(err => console.log(err));
 
+
+
+
 const cardList = new Section(
-    (item) => {
-      const card = new Card(
-        item,
-        all.cardSetting,
-        () => { popupWithImage.open(item.link, item.name) }
-      );
-      const cardElement = card.generateCard();
-      cardList.addItem(cardElement)
-    }, all.cardsContainerSelector);
+  (item) => {
+    cardList.addItem(createCard(item, () => { handleCardClick(item) }))
+  }, all.cardsContainerSelector);
 
 const profilePopup = new PopupWithForm(
-    all.popupSelectors.profilePopup,
+  all.popupSelectors.profilePopup,
 
-    (formData) => {
-      api.setUserInfo(formData)
-      userInfo.setUserInfo(formData)
-    }
-  );
+  (formData) => {
+    api.setUserInfo(formData)
+    userInfo.setUserInfo(formData)
+  }
+);
 
 const cardsPopup = new PopupWithForm(
   all.popupSelectors.cardsPopup,
   (item) => {
     api.postNewCard(item)
       .then((res) => {
-        const card = new Card(
-          res,
-          all.cardSetting,
-          () => { popupWithImage.open(item.link, item.name) }
-        );
-
-        return card
-      })
-      .then((card) => {
-        const cardElement = card.generateCard();
-        cardList.addItem(cardElement);
+        cardList.addItem(createCard(res, () => { handleCardClick(res) }))
       })
       .catch((err) => {
         console.log(err);
       })
   }
 );
+
+
+
+function createCard(cardElement, handleCardClick) {
+  const card = new Card(cardElement, all.cardSetting, handleCardClick );
+  return card.generateCard();
+}
+
+function handleCardClick(cardElement) {
+  popupWithImage.open(cardElement.link, cardElement.name);
+}
+
+
+
 
 all.profileEditBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
