@@ -29,6 +29,18 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   })
   .catch(err => console.log(err));
 
+const popupWithConfirm = new PopupWithConfirm(
+  all.popupSelectors.confirmPopup,
+  (cardId, cardElemment) => {
+    api.deleteCard(cardId)
+      .then(() => {
+        cardElemment.remove();
+        popupWithConfirm.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+})
 
 const cardList = new Section(
   (item) => {
@@ -62,19 +74,6 @@ const cardsPopup = new PopupWithForm(
   }
 );
 
-const popupWithConfirm = new PopupWithConfirm(
-  all.popupSelectors.confirmPopup,
-  (cardId, cardElemment) => {
-    api.deleteCard(cardId)
-      .then(() => {
-        cardElemment.remove();
-        popupWithConfirm.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  })
-
 
 function createCard(cardElement, handleCardClick ) {
   const card = new Card(
@@ -82,6 +81,16 @@ function createCard(cardElement, handleCardClick ) {
     all.cardSetting,
     handleCardClick,
     handleConfirmClick,
+    (request, cardId) => {
+      api.likeCard(request, cardId)
+      .then((res) => {
+        // console.log(res.likes.length)
+        card.setQuantityLike(res.likes.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    },
     userInfo.getUserId());
   return card.generateCard();
 }
@@ -93,8 +102,6 @@ function handleCardClick(cardElement) {
 function handleConfirmClick(cardId, cardElemment) {
   popupWithConfirm.open(cardId, cardElemment);
 }
-
-
 
 all.profileEditBtn.addEventListener('click', (evt) => {
   evt.preventDefault();

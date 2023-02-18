@@ -74,4 +74,14 @@ class Api {
       return this._checkStatusRequest(err)
     })
   }
+
+  likeCard(request, cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: request,
+      headers: this._headers,
+    })
+    .then(err => {
+      return this._checkStatusRequest(err)
+    })
+  }
 }
