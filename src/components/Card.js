@@ -6,23 +6,17 @@ class Card {
     this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
-    this._currentId = userId;
+    this._userId = userId;
     this._ownerId = cardElement.owner._id;
+    this._cardId = cardElement._id;
     this._likeCounter = cardElement.likes.length;
 
     this._handleCardClick = handleCardClick;
     this._handleConfirmClick = handleConfirmClick;
-    console.log(userId)
-  }
-
-  deleteCard = () => {
-    this._card.remove();
-    this._cardImg = null;
-    this._card = null;
   }
 
   _askUserBeforeDelete = () => {
-    this._handleConfirmClick();
+    this._handleConfirmClick(this._cardId, this._card);
   }
 
   _toggleCardLike = () => {
@@ -67,7 +61,7 @@ class Card {
 
     this._cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector);
 
-    if (this._currentId !== this._ownerId) {
+    if (this._userId !== this._ownerId) {
       this._cardDeleteBtn.remove();
     }
 

@@ -15,16 +15,6 @@ class Api {
     return Promise.reject(res.status)
   }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
-    })
-    .then(res => this._checkStatusRequest(res))
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
@@ -50,6 +40,16 @@ class Api {
     })
   }
 
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers
+    })
+    .then(res => this._checkStatusRequest(res))
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   postNewCard(cardElement) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -62,6 +62,16 @@ class Api {
     .then(res => this._checkStatusRequest(res))
     .catch((err) => {
       console.log(err);
+    })
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(err => {
+      return this._checkStatusRequest(err)
     })
   }
 }
