@@ -2,16 +2,17 @@
 
 export default
 class Card {
-  constructor(cardElement, cardSetting, handleCardClick, handleConfirmClick, userInfo) {
+  constructor(cardElement, cardSetting, handleCardClick, handleConfirmClick, userId) {
     this._cardSetting = cardSetting;
     this._name = cardElement.name;
     this._link = cardElement.link;
-    this._currentId = userInfo.id;
-    this._ownerId = cardElement._id;
+    this._currentId = userId;
+    this._ownerId = cardElement.owner._id;
     this._likeCounter = cardElement.likes.length;
 
     this._handleCardClick = handleCardClick;
     this._handleConfirmClick = handleConfirmClick;
+    console.log(userId)
   }
 
   deleteCard = () => {
@@ -66,9 +67,7 @@ class Card {
 
     this._cardDeleteBtn = this._card.querySelector(this._cardSetting.cardDeleteBtnSelector);
 
-    if (this.__currentId != this._ownerId) {
-      // console.log(this.__currentId);
-      // console.log(this._ownerId);
+    if (this._currentId !== this._ownerId) {
       this._cardDeleteBtn.remove();
     }
 

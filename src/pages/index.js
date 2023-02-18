@@ -22,9 +22,11 @@ const api = new Api(all.apiSetting),
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
     const [ userData, cardsArray ] = res;
-
-    cardList.renderCards(cardsArray, userData);
     userInfo.setUserInfo(userData);
+    return cardsArray
+  })
+  .then(cardsArray => {
+    cardList.renderCards(cardsArray);
   })
   .catch(err => console.log(err));
 
@@ -34,8 +36,8 @@ const cardList = new Section(
     cardList.addItem(createCard(
       item,
       () => { handleCardClick(item) },
-      () => { handleConfirmClick(item),
-      userInfo }))
+      () => { handleConfirmClick(item) }
+    ))
   }, all.cardsContainerSelector);
 
 const profilePopup = new PopupWithForm(
@@ -54,8 +56,8 @@ const cardsPopup = new PopupWithForm(
         cardList.addItem(createCard(
           res,
           () => { handleCardClick(res) },
-          () => { handleConfirmClick(res),
-          userInfo }))
+          () => { handleConfirmClick(res) }
+        ))
       })
       .catch((err) => {
         console.log(err);
@@ -65,8 +67,13 @@ const cardsPopup = new PopupWithForm(
 
 
 
-function createCard(cardElement, handleCardClick, handleConfirmClick, userInfo ) {
-  const card = new Card(cardElement, all.cardSetting, handleCardClick, handleConfirmClick, userInfo );
+function createCard(cardElement, handleCardClick, handleConfirmClick ) {
+  const card = new Card(
+    cardElement,
+    all.cardSetting,
+    handleCardClick,
+    handleConfirmClick,
+    userInfo.getUserId());
   return card.generateCard();
 }
 
