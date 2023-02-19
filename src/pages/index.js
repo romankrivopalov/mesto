@@ -147,6 +147,8 @@ function handleConfirmClick(cardId, cardElemment) {
 }
 
 all.avatarEditBtn.addEventListener('click', () => {
+  avatarFormValidator.checkInputValidity();
+
   avatarEditPopup.open();
 })
 
