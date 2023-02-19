@@ -126,3 +126,8 @@ popupWithConfirm.setEventListeners();
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+
+const btn = document.querySelector('.profile__btn-edit-avatar')
+btn.addEventListener('click', () => {
+  console.log(1)
+})

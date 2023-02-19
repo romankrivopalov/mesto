@@ -15,13 +15,16 @@
   </header>
   <main>
     <section class="profile container">
-      <img src="<%=require('./images/profile-avatar.jpg')%>" alt=" Улыбающийся мужчина в красной шапке и очках, на фоне моря." class="profile__avatar">
+      <button class="profile__btn-edit-avatar">
+        <img src="<%=require('./images/profile-avatar.jpg')%>" alt=" Улыбающийся мужчина в красной шапке и очках, на фоне моря." class="profile__avatar">
+      </button>
+
       <div class="profile__info">
         <div class="profile__info-wrapper">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button type="button" class="profile__edit-btn"></button>
         </div>
-        <h2 class="profile__subtitle">Исследователь океана</h2>
+        <h2 class="profile__subtitle"></h2>
       </div>
       <button type="button" class="profile__add-btn"></button>
     </section>
