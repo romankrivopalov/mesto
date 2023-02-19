@@ -39,6 +39,7 @@ const avatarEditPopup = new PopupWithForm(
     api.updateAvatar(newAvatarLink.link)
       .then((newUserData) => {
         userInfo.setUserInfo(newUserData)
+        avatarEditPopup.close();
       })
       .catch((err) => {
         console.log(err);
@@ -80,7 +81,8 @@ const profilePopup = new PopupWithForm(
 
     api.setUserInfo(userData)
       .then((newUserData) => {
-        userInfo.setUserInfo(newUserData)
+        userInfo.setUserInfo(newUserData);
+        profilePopup.close();
       })
       .catch((err) => {
         console.log(err);
@@ -103,7 +105,8 @@ const cardsPopup = new PopupWithForm(
         cardList.addItem(createCard(
           res,
           () => { handleCardClick(res) }
-        ))
+        ));
+        cardsPopup.close();
       })
       .catch((err) => {
         console.log(err);
@@ -121,10 +124,11 @@ function createCard(cardElement, handleCardClick ) {
     all.cardSetting,
     handleCardClick,
     handleConfirmClick,
-    (request, cardId) => {
-      api.likeCard(request, cardId)
+    (request, cardId, cardLikeBtn) => {
+      api.likeCard(request, cardId, cardLikeBtn)
       .then((res) => {
         card.setQuantityLike(res.likes.length);
+        card.toggleClassLikeElement(cardLikeBtn);
       })
       .catch((err) => {
         console.log(err);

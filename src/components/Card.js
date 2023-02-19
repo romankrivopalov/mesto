@@ -40,6 +40,10 @@ class Card {
     this._cardLikeCounter.textContent = QuantityLike;
   }
 
+  toggleClassLikeElement = (likeElement) => {
+    likeElement.classList.toggle(this._cardSetting.activeLikeBtnClass);
+  }
+
   _setEventListeners = () => {
     this._cardLikeBtn = this._card.querySelector(this._cardSetting.cardLikeBtnSelector);
 
@@ -49,11 +53,11 @@ class Card {
 
     this._cardLikeBtn.addEventListener('click', () => {
       if (this._ownerLike) {
-        this._likeCard('DELETE', this._cardId)
-        this._cardLikeBtn.classList.remove(this._cardSetting.activeLikeBtnClass);
+        this._likeCard('DELETE', this._cardId, this._cardLikeBtn);
+        this._ownerLike = false;
       } else {
-        this._likeCard('PUT', this._cardId)
-        this._cardLikeBtn.classList.add(this._cardSetting.activeLikeBtnClass);
+        this._likeCard('PUT', this._cardId, this._cardLikeBtn);
+        this._ownerLike = true;
       }
     })
 
