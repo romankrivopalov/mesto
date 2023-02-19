@@ -5,7 +5,8 @@
 .header{border-bottom:1px solid rgba(84,84,84,.7);padding:28px 27px 0}@media screen and (min-width:992px){.header{max-width:880px;padding:45px 0 0}}
 .header__logo{margin-bottom:28px;width:104px}@media screen and (min-width:992px){.header__logo{margin-bottom:37px;width:142px}}
 .profile{align-items:center;display:flex;flex-direction:column;padding:42px 19px 0}@media screen and (min-width:768px){.profile{-moz-column-gap:30px;column-gap:30px;flex-direction:row;justify-content:space-between;padding:40px 19px 0}}@media screen and (min-width:992px){.profile{max-width:880px;padding:40px 0 0}}
-.profile__avatar{border-radius:50%;display:block;height:120px;margin:0;-o-object-fit:cover;object-fit:cover;width:120px}
+.profile__btn-edit-avatar{background-color:transparent;border:none;border-radius:50%;color:inherit;font:inherit;height:120px;margin:0;overflow:hidden;padding:0;position:relative;width:120px}.profile__btn-edit-avatar:before{background-color:#000;border-radius:50%;content:"";height:100%;left:0;opacity:0;position:absolute;top:0;transition:opacity .3s ease-in-out;width:100%}.profile__btn-edit-avatar:hover:before{border-radius:50%;opacity:.8}.profile__btn-edit-avatar:after{background-image:url(images/icon-edit-avatar.ae1a976ddb506239e9f0.svg);background-position:50%;background-repeat:no-repeat;border-radius:50%;content:"";cursor:pointer;height:100%;left:0;opacity:0;position:absolute;top:0;transition:opacity .3s ease-in-out;width:100%}.profile__btn-edit-avatar:hover:after{border-radius:50%;opacity:.8}
+.profile__avatar{border-radius:50%;cursor:pointer;display:block;height:100%;margin:0;-o-object-fit:cover;object-fit:cover;width:100%}
 .profile__info{align-items:center;display:flex;flex-direction:column;margin:0;max-width:100%;padding:26px 0 33px}@media screen and (min-width:768px){.profile__info{align-items:flex-start;margin:0 auto 0 0;max-width:calc(100% - 330px);padding:0}}
 .profile__info-wrapper{align-items:baseline;box-sizing:border-box;display:flex;gap:10px;margin:0;max-width:100%;padding:0 0 0 28px;position:relative}@media screen and (min-width:768px){.profile__info-wrapper{gap:18px;padding:0}}
 .profile__title{font-size:27px;font-weight:500;line-height:33px;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (min-width:992px){.profile__title{font-size:42px;line-height:48px}}
@@ -37,11 +38,13 @@
 .popup__input-error{color:red;font-size:12px;font-weight:400;line-height:15px;min-height:30px;visibility:hidden}
 .popup__input-error_active{visibility:visible}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);color:var(--color-black);font-size:14px;font-weight:400;line-height:17px;margin:0;padding:0 0 9px;width:100%}.popup__input:focus{border-bottom:1px solid var(--color-black);outline:none}
+.popup__input_type_avatar{margin:73px 0 0}@media screen and (min-width:768px){.popup__input_type_avatar{margin:45px 0 0}}
 .popup__input_type_name{margin:75px 0 0}@media screen and (min-width:768px){.popup__input_type_name{margin:47px 0 0}}
 .popup__input_type_about{margin:0}
 .popup__input_type_error{border-bottom:1px solid var(--color-red)}
-.popup__save-btn{background-color:var(--color-black);border:1px solid transparent;border-radius:2px;color:var(--color-white);cursor:pointer;font-size:14px;line-height:46px;margin-top:15px;padding:0;transition:opacity .3s ease-in-out;width:100%}.popup__save-btn:hover{opacity:.8}@media screen and (min-width:768px){.popup__save-btn{font-size:18px;line-height:50px;margin-top:18px}}
-.popup__save-btn_inactive{background-color:inherit;border:1px solid rgba(0,0,0,.2);color:rgba(0,0,0,.2);cursor:default}
+.popup__submit-btn{background-color:var(--color-black);border:1px solid transparent;border-radius:2px;color:var(--color-white);cursor:pointer;font-size:14px;line-height:46px;margin-top:15px;padding:0;transition:opacity .3s ease-in-out;width:100%}.popup__submit-btn:hover{opacity:.8}@media screen and (min-width:768px){.popup__submit-btn{font-size:18px;line-height:50px;margin-top:18px}}
+.popup__submit-btn_place_confirm{margin-top:29px}
+.popup__submit-btn_inactive{background-color:inherit;border:1px solid rgba(0,0,0,.2);color:rgba(0,0,0,.2);cursor:default}
 .popup__img{max-height:75vh;max-width:75vw;-o-object-fit:contain;object-fit:contain}
 .container{margin:0}@media screen and (min-width:992px){.container{margin:0 auto}}
 
