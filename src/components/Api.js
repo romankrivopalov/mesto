@@ -40,6 +40,20 @@ class Api {
     })
   }
 
+  updateAvatar(newAvatarLink) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar : newAvatarLink
+      })
+    })
+    .then(res => this._checkStatusRequest(res))
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers

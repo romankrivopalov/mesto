@@ -33,12 +33,14 @@ const cardSetting = {
 
 export
 const userInfoData = {
+      profileAvatarSelector: '.profile__avatar',
       profileTitleSelector: '.profile__title',
       profileSubtitleSelector: '.profile__subtitle'
 };
 
 export
 const popupSelectors = {
+      avatarEditPopup: '.popup[data-type="avatar-popup"]',
       profilePopup: '.popup[data-type="edit-popup"]',
       cardsPopup: '.popup[data-type="add-popup"]',
       imgPopup: '.popup[data-type="img-popup"]',
@@ -47,6 +49,7 @@ const popupSelectors = {
 
 export
 const popupList = document.querySelectorAll('.popup'),
+      avatarEditBtn = document.querySelector('.profile__btn-edit-avatar'),
       profileEditBtn = document.querySelector('.profile__edit-btn'),
       formEditProfile = document.forms['profile-form'],
       inputTitle = formEditProfile.querySelector('.popup__input_type_name'),

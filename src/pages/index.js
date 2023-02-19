@@ -29,6 +29,18 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   })
   .catch(err => console.log(err));
 
+const avatarEditPopup = new PopupWithForm(
+  all.popupSelectors.avatarEditPopup,
+  (newAvatarLink) => {
+    api.updateAvatar(newAvatarLink.link)
+      .then((newUserData) => {
+        userInfo.setUserInfo(newUserData)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  })
+
 const popupWithConfirm = new PopupWithConfirm(
   all.popupSelectors.confirmPopup,
   (cardId, cardElemment) => {
@@ -48,7 +60,9 @@ const cardList = new Section(
       item,
       () => { handleCardClick(item) }
     ))
-  }, all.cardsContainerSelector);
+  },
+all.cardsContainerSelector);
+
 
 const profilePopup = new PopupWithForm(
   all.popupSelectors.profilePopup,
@@ -74,7 +88,6 @@ const cardsPopup = new PopupWithForm(
   }
 );
 
-
 function createCard(cardElement, handleCardClick ) {
   const card = new Card(
     cardElement,
@@ -84,7 +97,6 @@ function createCard(cardElement, handleCardClick ) {
     (request, cardId) => {
       api.likeCard(request, cardId)
       .then((res) => {
-        // console.log(res.likes.length)
         card.setQuantityLike(res.likes.length);
       })
       .catch((err) => {
@@ -103,6 +115,10 @@ function handleConfirmClick(cardId, cardElemment) {
   popupWithConfirm.open(cardId, cardElemment);
 }
 
+all.avatarEditBtn.addEventListener('click', () => {
+  avatarEditPopup.open();
+})
+
 all.profileEditBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
 
@@ -119,6 +135,7 @@ all.cardsAddBtn.addEventListener('click', () => {
   cardsPopup.open();
 });
 
+avatarEditPopup.setEventListeners();
 profilePopup.setEventListeners();
 cardsPopup.setEventListeners();
 popupWithImage.setEventListeners();
@@ -126,8 +143,3 @@ popupWithConfirm.setEventListeners();
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
-
-const btn = document.querySelector('.profile__btn-edit-avatar')
-btn.addEventListener('click', () => {
-  console.log(1)
-})
