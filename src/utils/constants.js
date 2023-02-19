@@ -49,6 +49,7 @@ const popupSelectors = {
 
 export
 const popupList = document.querySelectorAll('.popup'),
+      formEditAvatar = document.forms['avatar-form'],
       avatarEditBtn = document.querySelector('.profile__btn-edit-avatar'),
       profileEditBtn = document.querySelector('.profile__edit-btn'),
       formEditProfile = document.forms['profile-form'],

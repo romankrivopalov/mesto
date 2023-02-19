@@ -14,9 +14,10 @@ import FormValidator from '../components/FormValidator.js';
 
 const api = new Api(all.apiSetting),
       userInfo = new UserInfo(all.userInfoData),
-      profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile),
       popupWithImage = new PopupWithImage(all.popupSelectors.imgPopup),
-      cardFormValidator = new FormValidator(all.formSetting, all.formAddCard);
+      avatarFormValidator = new FormValidator(all.formSetting, all.formEditAvatar),
+      cardFormValidator = new FormValidator(all.formSetting, all.formAddCard),
+      profileFormValidator = new FormValidator(all.formSetting, all.formEditProfile);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(res => {
@@ -146,5 +147,6 @@ cardsPopup.setEventListeners();
 popupWithImage.setEventListeners();
 popupWithConfirm.setEventListeners();
 
+avatarFormValidator.enableValidation();
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
