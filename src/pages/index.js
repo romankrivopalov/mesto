@@ -32,7 +32,10 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 const avatarEditPopup = new PopupWithForm(
   all.popupSelectors.avatarEditPopup,
-  (newAvatarLink) => {
+  (newAvatarLink, btnForm) => {
+    const btnFormInitialText = btnForm.textContent;
+    showLoadingText(btnForm, all.btnLoadingText);
+
     api.updateAvatar(newAvatarLink.link)
       .then((newUserData) => {
         userInfo.setUserInfo(newUserData)
@@ -40,7 +43,12 @@ const avatarEditPopup = new PopupWithForm(
       .catch((err) => {
         console.log(err);
       })
-  })
+      .finally(() => {
+        showLoadingText(btnForm, btnFormInitialText)
+      })
+  },
+  all.btnFormSelector
+)
 
 const popupWithConfirm = new PopupWithConfirm(
   all.popupSelectors.confirmPopup,
@@ -64,10 +72,12 @@ const cardList = new Section(
   },
 all.cardsContainerSelector);
 
-
 const profilePopup = new PopupWithForm(
   all.popupSelectors.profilePopup,
-  (userData) => {
+  (userData, btnForm) => {
+    const btnFormInitialText = btnForm.textContent;
+    showLoadingText(btnForm, all.btnLoadingText);
+
     api.setUserInfo(userData)
       .then((newUserData) => {
         userInfo.setUserInfo(newUserData)
@@ -75,12 +85,19 @@ const profilePopup = new PopupWithForm(
       .catch((err) => {
         console.log(err);
       })
-  }
+      .finally(() => {
+        showLoadingText(btnForm, btnFormInitialText)
+      })
+  },
+  all.btnFormSelector
 );
 
 const cardsPopup = new PopupWithForm(
   all.popupSelectors.cardsPopup,
-  (item) => {
+  (item, btnForm) => {
+    const btnFormInitialText = btnForm.textContent;
+    showLoadingText(btnForm, all.btnLoadingText);
+
     api.postNewCard(item)
       .then((res) => {
         cardList.addItem(createCard(
@@ -91,7 +108,11 @@ const cardsPopup = new PopupWithForm(
       .catch((err) => {
         console.log(err);
       })
-  }
+      .finally(() => {
+        showLoadingText(btnForm, btnFormInitialText)
+      })
+  },
+  all.btnFormSelector
 );
 
 function createCard(cardElement, handleCardClick ) {
@@ -111,6 +132,10 @@ function createCard(cardElement, handleCardClick ) {
     },
     userInfo.getUserId());
   return card.generateCard();
+}
+
+function showLoadingText(btnForm, text) {
+  btnForm.textContent = text;
 }
 
 function handleCardClick(cardElement) {

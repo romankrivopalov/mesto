@@ -59,4 +59,6 @@ const popupList = document.querySelectorAll('.popup'),
       formAddCard = document.forms['card-form'],
       inputCardName = formAddCard.querySelector('.popup__input_type_name'),
       inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
-      cardsContainerSelector = '.cards__list';
+      cardsContainerSelector = '.cards__list',
+      btnFormSelector = '.popup__submit-btn',
+      btnLoadingText = 'Сохранение...';
