@@ -39,6 +39,8 @@ const avatarEditPopup = new PopupWithForm(
     api.updateAvatar(newAvatarLink.link)
       .then((newUserData) => {
         userInfo.setUserInfo(newUserData)
+      })
+      .then(() => {
         avatarEditPopup.close();
       })
       .catch((err) => {
@@ -57,6 +59,8 @@ const popupWithConfirm = new PopupWithConfirm(
     api.deleteCard(cardId)
       .then(() => {
         cardElemment.remove();
+      })
+      .then(() => {
         popupWithConfirm.close();
       })
       .catch((err) => {
@@ -82,6 +86,8 @@ const profilePopup = new PopupWithForm(
     api.setUserInfo(userData)
       .then((newUserData) => {
         userInfo.setUserInfo(newUserData);
+      })
+      .then(() => {
         profilePopup.close();
       })
       .catch((err) => {
@@ -106,6 +112,8 @@ const cardsPopup = new PopupWithForm(
           res,
           () => { handleCardClick(res) }
         ));
+      })
+      .then(() => {
         cardsPopup.close();
       })
       .catch((err) => {
@@ -151,8 +159,6 @@ function handleConfirmClick(cardId, cardElemment) {
 }
 
 all.avatarEditBtn.addEventListener('click', () => {
-  avatarFormValidator.checkInputValidity();
-
   avatarEditPopup.open();
 })
 

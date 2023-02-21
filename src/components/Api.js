@@ -20,9 +20,6 @@ class Api {
       headers: this._headers
     })
     .then(res => this._checkStatusRequest(res))
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   setUserInfo({ name, about }) {
@@ -35,9 +32,6 @@ class Api {
       })
     })
     .then(res => this._checkStatusRequest(res))
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   updateAvatar(newAvatarLink) {
@@ -49,9 +43,6 @@ class Api {
       })
     })
     .then(res => this._checkStatusRequest(res))
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   getInitialCards() {
@@ -59,9 +50,6 @@ class Api {
       headers: this._headers
     })
     .then(res => this._checkStatusRequest(res))
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   postNewCard(cardElement) {
@@ -74,9 +62,6 @@ class Api {
       })
     })
     .then(res => this._checkStatusRequest(res))
-    .catch((err) => {
-      console.log(err);
-    })
   }
 
   deleteCard(cardId) {
