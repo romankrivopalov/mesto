@@ -6,7 +6,7 @@
 ### **Версии проекта**
 ***
 1. Mesto (React, в разработке) :star: *этот репозиторий*
-1. [Mesto (classes)](https://github.com/romankrivopalov/mesto-classes)
+1. [Mesto (версия classes)](https://github.com/romankrivopalov/mesto-classes)
 2. [Mesto (классическая версия на JS)](https://github.com/romankrivopalov/mesto-classic)
 
 ### **Технологии**
