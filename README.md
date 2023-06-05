@@ -9,7 +9,7 @@
 2. [Mesto (бэкенд)](https://github.com/romankrivopalov/express-mesto-gha)
 3. [Mesto (React, регистрация и авторизация)](https://github.com/romankrivopalov/react-mesto-auth)
 4. [Mesto (React)](https://github.com/romankrivopalov/mesto-react)
-5. [Mesto (версия classes)] :star: *этот репозиторий*
+5. Mesto (версия classes) :star: *этот репозиторий*
 6. [Mesto (классическая версия на JS)](https://github.com/romankrivopalov/mesto-classic)
 
 ### **Технологии**
